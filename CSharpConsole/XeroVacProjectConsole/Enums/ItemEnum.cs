@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace XeroVacProjectConsole.Enums
 {
-    class ItemEnum
+    enum ItemEnum
     {
+        Key = 0,
+        Pistol = 1,
+        BeerGlass = 2
     }
 }

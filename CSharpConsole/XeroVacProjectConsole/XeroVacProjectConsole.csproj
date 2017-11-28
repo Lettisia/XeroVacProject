@@ -42,11 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\EnvironmentalEnum.cs" />
+    <Compile Include="Enums\ItemEnum.cs" />
+    <Compile Include="Models\Components\Environmental.cs" />
+    <Compile Include="Models\Components\Item.cs" />
+    <Compile Include="Models\Components\Component.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

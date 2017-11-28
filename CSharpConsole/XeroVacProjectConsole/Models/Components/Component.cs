@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace XeroVacProjectConsole.Models.Components
 {
-    class Component
+    abstract class Component
     {
+        public int x { get; set; }
+        public int y { get; set; }
+        public string description { get; set; }
     }
 }
