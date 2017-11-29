@@ -16,6 +16,7 @@ namespace XeroVacProjectConsole
     class Program
     {
 
+
         static NpgsqlConnection OpenDB()
         {
             var con = new NpgsqlConnection("Server=deathoftombstone.cfbtbnwur0gl.ap-southeast-2.rds.amazonaws.com;Port=5432;Database=DeathOfTombstone;User Id=Tombstone;Password=xerotomb");
@@ -32,30 +33,30 @@ namespace XeroVacProjectConsole
 
 
             string[] tables = { "Item", "Player", "Location", "Inventory", "Character" };
-            
+
 
             List<string> rows = new List<string>();
             var command = new NpgsqlCommand();
             //Npgsql.NpgsqlDataReader reader = new NpgsqlDataReader("");
-            foreach(string s in tables)
+            foreach (string s in tables)
             {
                 int i = 0;
-                command = new NpgsqlCommand("Select * from " + s +";", connection);
+                command = new NpgsqlCommand("Select * from " + s + ";", connection);
                 //command.Connection = connection;
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    rows.Add(reader[s +"id"].ToString());
+                    rows.Add(reader[s + "id"].ToString());
                     i++;
 
                 }
                 Console.WriteLine(i);
                 reader.Close();
             }
-            
+
             command = new NpgsqlCommand("Select * from commands;", connection);
             var reader2 = command.ExecuteReader();
-            
+
             while (reader2.Read())
             {
                 rows.Add(reader2["commandname"].ToString());
