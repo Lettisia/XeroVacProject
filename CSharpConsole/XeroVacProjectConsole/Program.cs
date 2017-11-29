@@ -37,6 +37,7 @@ namespace XeroVacProjectConsole
             List<string> rows = new List<string>();
             var command = new NpgsqlCommand();
             //Npgsql.NpgsqlDataReader reader = new NpgsqlDataReader("");
+
             foreach(string s in tables)
             {
                 int i = 0;

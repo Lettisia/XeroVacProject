@@ -10,7 +10,7 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
         super();
         this.state = { currentCount: 0 };
     }
-
+    
     public render() {
         return <div>
             <h1>Counter</h1>
@@ -19,7 +19,11 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
 
             <p>Current count: <strong>{ this.state.currentCount }</strong></p>
 
-            <button onClick={ () => { this.incrementCounter() } }>Increment</button>
+            <button onClick={() => { this.incrementCounter() }}>Increment</button>
+
+            <button onClick={() => { this.callDb() }}>TestDbCall</button>
+
+            <button onClick={() => { this.callDbPost() }}>TestDbPostCall</button>
         </div>;
     }
 
@@ -27,5 +31,49 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
         this.setState({
             currentCount: this.state.currentCount + 1
         });
+    }
+
+    //https://stackoverflow.com/questions/29775797/fetch-post-json-data
+    async callDbPost()
+    {
+        var testQuery = "testing";
+        var data = new FormData();
+        data.append("json", JSON.stringify(testQuery));
+        console.log(data);
+        
+        var response = await fetch("/Home/TestDbPostCall/?data=" + testQuery, {
+            method: 'POST',
+            
+            
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        var json = await response.json();
+        console.log(json);
+    }
+
+    async callDb() {
+        
+        var response = await fetch("/Home/TestDbCallDelete", {
+            method: 'GET'
+        });
+        
+        var json = await response.json();
+        console.log(json);
+
+        /*
+        console.log(fetch("/Home/TestDbCallDelete", {
+            method: 'GET'
+        }).then(function (resp) {
+            return resp.json();
+        }).then(function (data) {
+            console.log(data);
+            //can call set state
+            })
+        );
+        */
     }
 }

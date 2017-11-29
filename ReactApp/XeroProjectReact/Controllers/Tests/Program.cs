@@ -26,7 +26,7 @@ namespace XeroVacProjectConsole
 
 
 
-        static void Main(string[] args)
+        static void Test()
         {
 
             var connection = OpenDB();
