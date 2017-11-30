@@ -2,6 +2,7 @@
 
 The JSON file the react is reading from is located in the folder labelled 'public'. 
 
+<pre>
 my-app
   |--public
   |    |--jsonExample
@@ -10,4 +11,4 @@ my-app
   |    |--components
   |    |     |--homePage.js     //FETCH REQUEST
   |    |--index.js              //RENDER PAGE HERE 
-          
+</pre>
