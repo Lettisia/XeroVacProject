@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
+using Newtonsoft.Json;
+using XeroProjectReact.Models;
 
 namespace XeroProjectReact.Controllers
 {
@@ -30,7 +32,7 @@ namespace XeroProjectReact.Controllers
 
         //https://stackoverflow.com/questions/44925223/how-to-pass-data-to-controller-using-fetch-api-in-asp-net-core to send objects
         [HttpPost]
-        public IEnumerable<string> TestDbPostCall( string data)
+        public IEnumerable<string> TestDbPostCall(string data)
         {
             List<string> rows = new List<string>();
 
@@ -38,13 +40,33 @@ namespace XeroProjectReact.Controllers
             return rows;
         }
 
+        [HttpPost]
+        public string DbAccessRow(string jsonStr)
+        {
+            Console.WriteLine(jsonStr);
+            var cmd = JsonConvert.DeserializeObject<Command>(jsonStr);
+            var connection = OpenDB();
+            var command = new NpgsqlCommand(cmd.DBQuery(), connection);
+            var reader = command.ExecuteReader();
+
+            var response = "";
+            if (reader.Read())
+            {
+                response = reader[0].ToString();
+            }
+
+            Console.WriteLine(response);
+            return response;
+        }
+
+
         [HttpGet]
         public IEnumerable<string> TestDbCallDelete()
         {
             var connection = OpenDB();
 
 
-            string[] tables = { "Item", "Player", "Location", "Inventory", "Character" };
+            string[] tables = { "Item", "Player", "Location","Character" };
 
 
             List<string> rows = new List<string>();
@@ -83,6 +105,12 @@ namespace XeroProjectReact.Controllers
             connection.Close();
 
             return rows;
+
+
+        }
+
+        public class ExampleQuery
+        {
 
 
         }

@@ -21,9 +21,11 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
 
             <button onClick={() => { this.incrementCounter() }}>Increment</button>
 
-            <button onClick={() => { this.callDb() }}>TestDbCall</button>
+            <button onClick={() => { this.callDb("/Home/TestDbCallDelete/") }}>TestDbCall</button>
 
-            <button onClick={() => { this.callDbPost() }}>TestDbPostCall</button>
+            <button onClick={() => { this.callDbPost("/Home/DbAccessRow/") }}>TestDbPostCall</button>
+
+            <button onClick={() => { this.callDb("/Home/DbAccessRow/") }}>Grab Row</button>
         </div>;
     }
 
@@ -33,31 +35,30 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
         });
     }
 
+
+
+
     //https://stackoverflow.com/questions/29775797/fetch-post-json-data
-    async callDbPost()
+    async callDbPost(url: string)
     {
-        var testQuery = "testing";
-        var data = new FormData();
-        data.append("json", JSON.stringify(testQuery));
-        console.log(data);
-        
-        var response = await fetch("/Home/TestDbPostCall/?data=" + testQuery, {
+        var testQuery = JSON.stringify({ Action: 'CHARDESC', Parameter: '1', });
+        url += "?jsonStr=" + testQuery;
+
+        var response = await fetch(url, {
             method: 'POST',
-            
-            
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
         });
 
         var json = await response.json();
         console.log(json);
     }
 
-    async callDb() {
-        
-        var response = await fetch("/Home/TestDbCallDelete", {
+    async callDb(url: string) {
+
+        var response = await fetch(url, {
             method: 'GET'
         });
         
