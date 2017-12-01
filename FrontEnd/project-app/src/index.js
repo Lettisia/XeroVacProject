@@ -1,21 +1,6 @@
 import React from 'react'; 
 import ReactDOM from 'react-dom'; 
 import './index.css';
-/*
-function display(props){
-    return (
-        <div className="story">
-        <div className="storyline">
-        </div>
-        </div>
-    );
-}
-
-const storyBlock = (
-    <div></div>
-);
-*/
-
 
 
 function GameStart(props) {
