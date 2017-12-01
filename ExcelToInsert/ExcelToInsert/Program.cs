@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NPOI;
 using ExcelDataReader;
 using System.IO;
 using ExcelDataReader.Core;
@@ -16,10 +15,17 @@ namespace ExcelToInsert
         public static readonly string STRING_IDENTIFIER = "string";
         public static readonly string BOOL_IDENTIFIER = "bool";
         public static readonly string INT_IDENTIFIER = "int";
+
         public static readonly string SQL_INSERT_BEFORE = "INSERT INTO ";
         public static readonly string SQL_INSERT_MIDDLE = " VALUES( ";
         public static readonly string SQL_INSERT_END = " );\n";
-        public static readonly List<string> LIST_OF_DIRECTIONS = new List<string> { "e (int)", "n (int)", "w (int)", "s (int)" };
+
+        public static readonly List<string> LIST_OF_DIRECTION_COLUMNS = new List<string> { "e (int)", "n (int)", "w (int)", "s (int)" };
+        public static readonly string ID_IDENTIFIER = "id (int)";
+
+        public static readonly string SQL_UPDATE_BEFORE = "UPDATE ";
+        public static readonly string SQL_UPDATE_MIDDLE = " SET ";
+        public static readonly string SQL_UPDATE_END = " WHERE id = ";
 
 
         class Employee
@@ -87,7 +93,7 @@ namespace ExcelToInsert
                                     else if (ListOfHeaders.ElementAt(i).Contains(INT_IDENTIFIER))
                                     {
                                         value = reader.GetDouble(i).ToString();
-                                        if (value.Equals("-1") || LIST_OF_DIRECTIONS.Contains(ListOfHeaders.ElementAt(i)))
+                                        if (value.Equals("-1") || LIST_OF_DIRECTION_COLUMNS.Contains(ListOfHeaders.ElementAt(i)))
                                         {
                                             value = "null";
                                         }
@@ -116,9 +122,9 @@ namespace ExcelToInsert
                         //moves to next sheet, until no more
                     } while (reader.NextResult());
 
+                    stream.Close();
 
-
-                    //AddUpdates(filePath, "location", ListOfQueries);
+                    AddUpdates(filePath, "location", ListOfQueries);
                     File.AppendAllLines(@"../../TotalListOfInserts.txt", new List<string> { DateTime.Now.ToString() });
                     File.AppendAllLines(@"../../TotalListOfInserts.txt", ListOfQueries);
                     File.WriteAllLines(@"../../ListOfInserts.txt", ListOfQueries);
@@ -131,6 +137,8 @@ namespace ExcelToInsert
         {
             //"UPDATE location SET " loop of "header = num" if not -1 "WHERE" id = whatever ";"; 
 
+            //UPDATE location SET e = 4 WHERE id = 1;
+
             using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
             {
                 var ListOfHeaders = new List<string>();
@@ -139,16 +147,56 @@ namespace ExcelToInsert
                 {
                     do
                     {
-                        bool isHeader = true;
-
-                        if (reader.Name.Equals(tablename))
+                        if (!reader.Name.Equals(tablename))
                         {
-                            if(isHeader)
-                            {
-                                //ListOfHeaders.Add(reader.GetString(i))
-                            }
+                            continue;
                         }
+                            bool isHeader = true;
 
+                        while (reader.Read())
+                        {
+                            string startOfQuery = SQL_UPDATE_BEFORE + tablename + SQL_UPDATE_MIDDLE;
+                            string columnsToUpdate = "";
+                            string endOfQuery = "";
+
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                
+                                if (isHeader)
+                                {
+                                    ListOfHeaders.Add(reader.GetString(i));
+                                }
+                                else
+                                {
+                                    string currentHeader = ListOfHeaders.ElementAt(i);
+                                    if (currentHeader.Equals(ID_IDENTIFIER))
+                                    {
+                                        endOfQuery = SQL_UPDATE_END + reader.GetDouble(i)+";";
+                                    }
+                                    if (LIST_OF_DIRECTION_COLUMNS.Contains(currentHeader))
+                                    {
+                                        int cellValue = (int) reader.GetDouble(i);
+                                        if (cellValue != -1)
+                                        {
+                                            string columnNameInDatabase = currentHeader.Split(' ')[0];
+                                            columnsToUpdate += columnNameInDatabase + " = " + cellValue + ", ";
+                                        }
+                                        
+
+                                    }
+                                }
+                            }
+                            isHeader = false;
+
+                            if (!string.IsNullOrEmpty(columnsToUpdate))
+                            {
+                                columnsToUpdate = columnsToUpdate.Substring(0, columnsToUpdate.Length - 1);
+                                var completeUpdateQuery = startOfQuery + columnsToUpdate + endOfQuery + "\n";
+                                ListOfQueries.Add(completeUpdateQuery);
+                            }
+                    
+                        }
+                        
                     } while (reader.NextResult());
                 }
             }
