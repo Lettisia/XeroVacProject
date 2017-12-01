@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using Newtonsoft.Json;
 using XeroProjectReact.Models;
+using XeroVacProjectConsole.Models;
 
 namespace XeroProjectReact.Controllers
 {
@@ -56,6 +57,8 @@ namespace XeroProjectReact.Controllers
             }
 
             Console.WriteLine(response);
+            InitialiseLocations();
+
             return response;
         }
 
@@ -66,7 +69,7 @@ namespace XeroProjectReact.Controllers
             var connection = OpenDB();
 
 
-            string[] tables = { "Item", "Player", "Location","Character" };
+            string[] tables = { "Item", "Player", "Location", "Character" };
 
 
             List<string> rows = new List<string>();
@@ -98,10 +101,6 @@ namespace XeroProjectReact.Controllers
             }
             reader2.Close();
 
-
-
-
-
             connection.Close();
 
             return rows;
@@ -109,11 +108,41 @@ namespace XeroProjectReact.Controllers
 
         }
 
-        public class ExampleQuery
+        public List<Location> InitialiseLocations()
         {
+            var connection = OpenDB();
+            var command = new NpgsqlCommand("SELECT * FROM location", connection);
+            var reader = command.ExecuteReader();
 
+            List<Location> locations = new List<Location>();
+            
+            while (reader.Read())
+            {
 
+                Location location = new Location();
+                location.id = reader.GetInt32(0);
+                location.name = reader.GetString(1);
+                location.east = CheckNullIntegers(reader,2);
+                location.west = CheckNullIntegers(reader, 3); 
+                location.north = CheckNullIntegers(reader, 4);
+                location.south = CheckNullIntegers(reader, 5);
+                location.description = reader.GetString(6);
+                location.verboseDescription = reader.GetString(7);
+                locations.Add(location);
+
+            }
+
+            Console.WriteLine(locations);
+
+            return locations;
         }
-    
+
+        public int? CheckNullIntegers(NpgsqlDataReader reader, int index)
+        {
+            if (reader.IsDBNull(index))
+                return null;
+            else
+                return reader.GetInt32(index);
+        }
     }
 }
