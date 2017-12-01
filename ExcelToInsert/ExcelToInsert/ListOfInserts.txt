@@ -24,3 +24,13 @@ INSERT INTO item VALUES( 1,'Dolores"s Magic Herbs','Magical protective herbs to 
 
 INSERT INTO item VALUES( 2,'Johnny"s Lucky Coin','A lucky coin, which is well known to belong to Johnny, the sheriff"s childhood friend which the player will know somehow',1,False );
 
+UPDATE location SET e = 5, WHERE id = 1;
+
+UPDATE location SET n = 5, WHERE id = 2;
+
+UPDATE location SET s = 5, WHERE id = 3;
+
+UPDATE location SET w = 5, WHERE id = 4;
+
+UPDATE location SET e = 4, w = 1, n = 3, s = 2, WHERE id = 5;
+
