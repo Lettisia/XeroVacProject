@@ -10,5 +10,9 @@ namespace XeroVacProjectConsole.Models
     class Player
     {
         List<Item> items;
+
+        public int id { get; set; }
+        public string name { get; set; }
+
     }
 }
