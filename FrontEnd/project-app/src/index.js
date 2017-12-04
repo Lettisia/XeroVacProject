@@ -1,16 +1,43 @@
 import React from 'react'; 
 import ReactDOM from 'react-dom'; 
-import './index.css'; 
+import './index.css';
 
-class App extends React.Component {
-    render() {
-        return(
-            <h1>Howdy Partner!</h1>
-        );
-    }
+
+function GameStart(props) {
+    return <h1>Death in Tombstone</h1>;
 }
 
+
+
+class App extends React.Component {
+    constructor(){
+        super();
+        this.state ={
+        }
+    }
+
+    handleClick(event) {
+        console.log('this is:', this);
+        alert('button clicked');
+    }
+
+    render() {
+        return ( <div>
+            <h1>Howdy Partner!</h1>
+            <button onClick={this.handleClick}>Please work</button>
+            <GameStart /> 
+            </div>
+        
+        );
+
+    }
+
+}
+
+
+
+
 ReactDOM.render(
-    <App />, 
+    <App />,
     document.getElementById('root')
 ); 

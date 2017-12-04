@@ -133,3 +133,115 @@ INSERT INTO item VALUES( 1,'Dolores"s Magic Herbs','Magical protective herbs to 
 
 INSERT INTO item VALUES( 2,'Johnny"s Lucky Coin','A lucky coin, which is well known to belong to Johnny, the sheriff"s childhood friend which the player will know somehow',1,False );
 
+1/12/2017 10:18:34 AM
+INSERT INTO location VALUES( 1,'Office',null,null,null,null,'The town gaol and your workplace','The town gaol and where you spend your long and ultimately unfulfilling existence, before finally passing away without ever leaving any semblance of a mark upon the world. You are a sad, sad person, your life was meaningless. This is a cry for help. Please.',True );
+
+INSERT INTO location VALUES( 2,'Spooky House',null,null,null,null,'An old, run-down house','A spooooooooooky house, run by the ever lovely and elderly Dolores, known for her sweet sweet herbs',False );
+
+INSERT INTO location VALUES( 3,'Cemetary',null,null,null,null,'The town holy burial grounds','A large and desolate expanse, dotted with tombstones and crosses in various states of disrepair. Despite the heat of the day, there seems to be a noticable chill in the air.',False );
+
+INSERT INTO location VALUES( 4,'Saloon',null,null,null,null,'The town bar','The local haunt. The whitewashed outside hides what is undoubtedly a wretched hive of scum and villainy.',False );
+
+INSERT INTO location VALUES( 5,'Main Street',null,null,null,null,'Where all the rowdy cowboys and cowboy killers walk "round','Main Street (this is meant to be verbose)',False );
+
+INSERT INTO player VALUES( 1,'Jimmy' );
+
+INSERT INTO character VALUES( 1,'Clayton','The town drunk and known to be slightly crazy. He is a frequent visitor to the town goal',1 );
+
+INSERT INTO character VALUES( 2,'Johnny','An old friend who has been in trouble with the law before.',4 );
+
+INSERT INTO character VALUES( 3,'Old Lady Dolores','An old lady who lives alone. Dolores has always been a close confidante. Her medicines are renown.',2 );
+
+INSERT INTO character VALUES( 4,'Clementine, The Cowboy Killer','The murderer several people in the town. She was killed by your father but not before she managed to land a killing blow on him.',3 );
+
+INSERT INTO command VALUES( 'MOVE','move a thing to a place' );
+
+INSERT INTO item VALUES( 1,'Dolores"s Magic Herbs','Magical protective herbs to help defeat evil spirits',null,False );
+
+INSERT INTO item VALUES( 2,'Johnny"s Lucky Coin','A lucky coin, which is well known to belong to Johnny, the sheriff"s childhood friend which the player will know somehow',1,False );
+
+1/12/2017 3:25:33 PM
+INSERT INTO location VALUES( 1,'Office',null,null,null,null,'The town gaol and your workplace','The town gaol and where you spend your long and ultimately unfulfilling existence, before finally passing away without ever leaving any semblance of a mark upon the world. You are a sad, sad person, your life was meaningless. This is a cry for help. Please.',True );
+
+INSERT INTO location VALUES( 2,'Spooky House',null,null,null,null,'An old, run-down house','A spooooooooooky house, run by the ever lovely and elderly Dolores, known for her sweet sweet herbs',False );
+
+INSERT INTO location VALUES( 3,'Cemetary',null,null,null,null,'The town holy burial grounds','A large and desolate expanse, dotted with tombstones and crosses in various states of disrepair. Despite the heat of the day, there seems to be a noticable chill in the air.',False );
+
+INSERT INTO location VALUES( 4,'Saloon',null,null,null,null,'The town bar','The local haunt. The whitewashed outside hides what is undoubtedly a wretched hive of scum and villainy.',False );
+
+INSERT INTO location VALUES( 5,'Main Street',null,null,null,null,'Where all the rowdy cowboys and cowboy killers walk "round','Main Street (this is meant to be verbose)',False );
+
+INSERT INTO player VALUES( 1,'Jimmy' );
+
+INSERT INTO character VALUES( 1,'Clayton','The town drunk and known to be slightly crazy. He is a frequent visitor to the town goal',1 );
+
+INSERT INTO character VALUES( 2,'Johnny','An old friend who has been in trouble with the law before.',4 );
+
+INSERT INTO character VALUES( 3,'Old Lady Dolores','An old lady who lives alone. Dolores has always been a close confidante. Her medicines are renown.',2 );
+
+INSERT INTO character VALUES( 4,'Clementine, The Cowboy Killer','The murderer several people in the town. She was killed by your father but not before she managed to land a killing blow on him.',3 );
+
+INSERT INTO command VALUES( 'MOVE','move a thing to a place' );
+
+INSERT INTO item VALUES( 1,'Dolores"s Magic Herbs','Magical protective herbs to help defeat evil spirits',null,False );
+
+INSERT INTO item VALUES( 2,'Johnny"s Lucky Coin','A lucky coin, which is well known to belong to Johnny, the sheriff"s childhood friend which the player will know somehow',1,False );
+
+UPDATE location SET e = 5, WHERE id = 1;
+
+UPDATE location SET n = 5, WHERE id = 2;
+
+UPDATE location SET s = 5, WHERE id = 3;
+
+UPDATE location SET w = 5, WHERE id = 4;
+
+UPDATE location SET e = 4, w = 1, n = 3, s = 2, WHERE id = 5;
+
+1/12/2017 3:46:38 PM
+UPDATE location SET e = 5, WHERE id = 1;
+
+UPDATE location SET n = 5, WHERE id = 2;
+
+UPDATE location SET s = 5, WHERE id = 3;
+
+UPDATE location SET w = 5, WHERE id = 4;
+
+UPDATE location SET e = 4, w = 1, n = 3, s = 2, WHERE id = 5;
+
+1/12/2017 3:47:14 PM
+INSERT INTO location VALUES( 1,'Office',null,null,null,null,'The town gaol and your workplace','The town gaol and where you spend your long and ultimately unfulfilling existence, before finally passing away without ever leaving any semblance of a mark upon the world. You are a sad, sad person, your life was meaningless. This is a cry for help. Please.',True );
+
+INSERT INTO location VALUES( 2,'Spooky House',null,null,null,null,'An old, run-down house','A spooooooooooky house, run by the ever lovely and elderly Dolores, known for her sweet sweet herbs',False );
+
+INSERT INTO location VALUES( 3,'Cemetary',null,null,null,null,'The town holy burial grounds','A large and desolate expanse, dotted with tombstones and crosses in various states of disrepair. Despite the heat of the day, there seems to be a noticable chill in the air.',False );
+
+INSERT INTO location VALUES( 4,'Saloon',null,null,null,null,'The town bar','The local haunt. The whitewashed outside hides what is undoubtedly a wretched hive of scum and villainy.',False );
+
+INSERT INTO location VALUES( 5,'Main Street',null,null,null,null,'Where all the rowdy cowboys and cowboy killers walk "round','Main Street (this is meant to be verbose)',False );
+
+INSERT INTO player VALUES( 1,'Jimmy' );
+
+INSERT INTO character VALUES( 1,'Clayton','The town drunk and known to be slightly crazy. He is a frequent visitor to the town goal',1 );
+
+INSERT INTO character VALUES( 2,'Johnny','An old friend who has been in trouble with the law before.',4 );
+
+INSERT INTO character VALUES( 3,'Old Lady Dolores','An old lady who lives alone. Dolores has always been a close confidante. Her medicines are renown.',2 );
+
+INSERT INTO character VALUES( 4,'Clementine, The Cowboy Killer','The murderer several people in the town. She was killed by your father but not before she managed to land a killing blow on him.',3 );
+
+INSERT INTO command VALUES( 'MOVE','move a thing to a place' );
+
+INSERT INTO item VALUES( 1,'Dolores"s Magic Herbs','Magical protective herbs to help defeat evil spirits',null,False );
+
+INSERT INTO item VALUES( 2,'Johnny"s Lucky Coin','A lucky coin, which is well known to belong to Johnny, the sheriff"s childhood friend which the player will know somehow',1,False );
+
+UPDATE location SET e = 5, WHERE id = 1;
+
+UPDATE location SET n = 5, WHERE id = 2;
+
+UPDATE location SET s = 5, WHERE id = 3;
+
+UPDATE location SET w = 5, WHERE id = 4;
+
+UPDATE location SET e = 4, w = 1, n = 3, s = 2, WHERE id = 5;
+

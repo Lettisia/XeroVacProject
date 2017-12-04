@@ -3,12 +3,18 @@ import { RouteComponentProps } from 'react-router';
 
 interface CounterState {
     currentCount: number;
+    showText: boolean;
 }
 
+
 export class Counter extends React.Component<RouteComponentProps<{}>, CounterState> {
+
+    testData: string;
+
     constructor() {
         super();
-        this.state = { currentCount: 0 };
+        this.state = { currentCount: 0, showText: true };
+
     }
     
     public render() {
@@ -26,6 +32,16 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
             <button onClick={() => { this.callDbPost("/Home/DbAccessRow/") }}>TestDbPostCall</button>
 
             <button onClick={() => { this.callDb("/Home/DbAccessRow/") }}>Grab Row</button>
+
+            
+
+            
+            <button onClick={() => { this.displayText()}}>display</button>
+
+
+            <p id="story" hidden={this.state.showText}>
+                {this.testData}
+            </p>
         </div>;
     }
 
@@ -34,6 +50,13 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
             currentCount: this.state.currentCount + 1
         });
     }
+    
+    displayText() {
+        if (this.testData != null) {
+            this.setState({ showText: false });
+        }
+    }
+    
 
 
 
@@ -54,6 +77,9 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
 
         var json = await response.json();
         console.log(json);
+        
+        this.testData = json;
+ 
     }
 
     async callDb(url: string) {

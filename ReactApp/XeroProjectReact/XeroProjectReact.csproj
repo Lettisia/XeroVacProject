@@ -23,7 +23,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\components\FetchData - Copy.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Controllers\Tests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\components\Story.tsx" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
