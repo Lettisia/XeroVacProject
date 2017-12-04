@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
-using XeroVacProjectConsole.Models;
+using XeroProjectReact.Models;
 
 namespace XeroProjectReact.Controllers
 {
@@ -22,6 +22,26 @@ namespace XeroProjectReact.Controllers
             return con;
         }
 
+        public List<Character> InitialiseCharacter()
+        {
+            var connection = OpenDB();
+            var command = new NpgsqlCommand("SELECT * FROM charcter", connection);
+            var reader = command.ExecuteReader();
+
+            List<Character> characterList = new List<Character>();
+            while (reader.Read())
+            {
+                Character character = new Character();
+                character.id = reader.GetInt32(0);
+                character.characterName = reader.GetString(1);
+                character.characterDescription = reader.GetString(2);
+                character.locationId = CheckNullIntegers(reader, 3); 
+                characterList.Add(character);
+            }
+
+            Console.WriteLine(characterList);
+            return characterList;
+        }
 
         public List<Location> InitialiseLocations()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using XeroVacProjectConsole.Models.Components;
 using XeroVacProjectConsole.Enums;
 
-namespace XeroVacProjectConsole.Models
+namespace XeroProjectReact.Models
 {
     public class Location
     {
