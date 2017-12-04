@@ -64,7 +64,7 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
     //https://stackoverflow.com/questions/29775797/fetch-post-json-data
     async callDbPost(url: string)
     {
-        var testQuery = JSON.stringify({ Action: 'CHARDESC', Parameter: '1' });
+        var testQuery = JSON.stringify({ Action: 'PICKUP', Parameter: '4' });
         url += "?jsonStr=" + testQuery;
 
         var response = await fetch(url, {
