@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using XeroVacProjectConsole.Models;
+using XeroProjectReact.Models;
 
 namespace XeroProjectReact.Controllers
 {
@@ -61,5 +62,26 @@ namespace XeroProjectReact.Controllers
         }
 
 
+        public List<Item> InitialiseItems()
+        {
+            var connection = OpenDB();
+            var command = new NpgsqlCommand("SELECT * FROM item", connection);
+            var reader = command.ExecuteReader();
+
+            List<Item> items = new List<Item>();
+
+            while (reader.Read())
+            {
+                Item item = new Item();
+                item.id = reader.GetInt32(0);
+                item.name = reader.GetString(1);
+                item.description = reader.GetString(2);
+                item.locationId = CheckNullIntegers(reader, 3);
+                item.isVisible = reader.GetBoolean(4);
+            }
+
+            Console.WriteLine(items);
+            return items;
+        }
     }
 }
