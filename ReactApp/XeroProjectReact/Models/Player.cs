@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using XeroVacProjectConsole.Models.Components;
 
-namespace XeroVacProjectConsole.Models
+namespace XeroProjectReact.Models
 {
-    class Player
+    public class Player
     {
         List<Item> items;
 
