@@ -173,6 +173,7 @@ namespace ExcelToInsert
             }
             if (!string.IsNullOrEmpty(columnsToUpdate))
             {
+                
                 columnsToUpdate = columnsToUpdate.Substring(0, columnsToUpdate.Length - 1);
                 var completeUpdateQuery = startOfQuery + columnsToUpdate + endOfQuery + "\n";
                 return completeUpdateQuery;
