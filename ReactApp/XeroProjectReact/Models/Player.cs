@@ -7,7 +7,7 @@ using XeroVacProjectConsole.Models.Components;
 
 namespace XeroProjectReact.Models
 {
-    class Player
+    public class Player
     {
         List<Item> items;
 
