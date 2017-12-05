@@ -9,7 +9,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Npgsql;
-
+using XeroVacProjectConsole.Models;
+using XeroVacProjectConsole.Models.Items;
 
 namespace XeroVacProjectConsole
 {
@@ -27,52 +28,29 @@ namespace XeroVacProjectConsole
 
         static void Main(string[] args)
         {
+            Item item = new Key();
+            List<Item> items = new List<Item>();
+            items.Add((Key)item);
+            items.ElementAt(0);
+            items.Add(new Key());
 
-            var connection = OpenDB();
+            Console.WriteLine(items.ElementAt(0) is Key);
+            Console.WriteLine(items.ElementAt(1) is Key);
 
-
-            string[] tables = { "Item", "Player", "Location", "Inventory", "Character" };
-            
-
-            List<string> rows = new List<string>();
-            var command = new NpgsqlCommand();
-            //Npgsql.NpgsqlDataReader reader = new NpgsqlDataReader("");
-
-            foreach(string s in tables)
+            List<Item> abc = new List<Item>(new Item[] {
+                new Key(),
+                new Door()
+            });
+            foreach(Item i in abc)
             {
-                int i = 0;
-                command = new NpgsqlCommand("Select * from " + s +";", connection);
-                //command.Connection = connection;
-                var reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    rows.Add(reader[s +"id"].ToString());
-                    i++;
-
-                }
-                Console.WriteLine(i);
-                reader.Close();
+                i.Interact(new Key());
             }
-            
-            command = new NpgsqlCommand("Select * from commands;", connection);
-            var reader2 = command.ExecuteReader();
-            
-            while (reader2.Read())
-            {
-                rows.Add(reader2["commandname"].ToString());
-
-            }
-            reader2.Close();
-
-
-
-
-
-            connection.Close();
-
-            //return rows;
-
 
         }
+
+        
+
+
+        
     }
 }

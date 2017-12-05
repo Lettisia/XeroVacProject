@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XeroVacProjectConsole.Models.Components.Items;
+using XeroVacProjectConsole.Models.Items;
 
 namespace XeroVacProjectConsole.Controllers
 {
     class Interactions
     {
-        public string Interact(Door d, Key k)
+        //public world reference
+        public static string DoorInteractKey(Door d, Key k)
         {
-            //open door
+            //open door and remove key from inventory
             return "xyz";
-        } public void Interact(Key k, Door d) { Interact(d, k); }
+        } 
 
 
 

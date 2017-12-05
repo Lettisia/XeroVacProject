@@ -13,7 +13,6 @@ namespace XeroProjectReact.Models
 
         public void Execute()
         {
-            Models model = new Model()
             switch (Action)
             {
                 case "CHARDESC":

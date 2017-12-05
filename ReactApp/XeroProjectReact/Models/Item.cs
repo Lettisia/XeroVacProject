@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using XeroProjectReact.Models.Items;
 
 namespace XeroProjectReact.Models
 {
-    public class Item
+    public abstract class Item
     {
         public int id { get; set; }
         public string name { get; set; }
@@ -18,10 +20,34 @@ namespace XeroProjectReact.Models
         //
         // }
 
-        public static Item ReadItemIntoChildClass()
-        {
 
-            return new Item();
+        public abstract string Interact(Item i);
+        
+
+
+        public static Item GenerateChildOfItemFromId(int id)
+        {
+            switch (id)
+            {
+                case (1):
+                    return new Key();
+                case (2):
+                    return new Door();
+                case (3):
+                    return new Door();
+                case (4):
+                    return new Door();
+                case (5):
+                    return new Door();
+                case (6):
+                    return new Door();
+                case (7):
+                    return new Door();
+                default:
+                    return null;
+
+            }
+            //return new Key();
         }
 
 

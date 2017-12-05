@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using Newtonsoft.Json;
 using XeroProjectReact.Models;
-using XeroVacProjectConsole.Models;
 
 namespace XeroProjectReact.Controllers
 {
@@ -35,7 +34,13 @@ namespace XeroProjectReact.Controllers
 
             return rows;
         }
-       
+        private static NpgsqlConnection OpenDB()
+        {
+            var con = new NpgsqlConnection("Server=deathoftombstone.cfbtbnwur0gl.ap-southeast-2.rds.amazonaws.com;Port=5432;Database=DeathOfTombstone;User Id=Tombstone;Password=xerotomb");
+            con.Open();
+            return con;
+        }
+
 
         [HttpGet]
         public IEnumerable<string> TestDbCallDelete()

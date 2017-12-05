@@ -92,13 +92,18 @@ namespace XeroProjectReact.Controllers
 
             while (reader.Read())
             {
-                Item item = new Item();
-                item.id = reader.GetInt32(0);
+                int id = reader.GetInt32(0);
+                Item item = Item.GenerateChildOfItemFromId(id);
+                item.id = id;
                 item.name = reader.GetString(1);
                 item.description = reader.GetString(2);
                 item.locationId = CheckNullIntegers(reader, 3);
                 item.isVisible = reader.GetBoolean(4);
+                // return item casted to its type!
+                items.Add(item);
             }
+            connection.Close();
+            reader.Close();
 
             Console.WriteLine(items);
             return items;

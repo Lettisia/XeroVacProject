@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XeroVacProjectConsole.Controllers;
 
-namespace XeroProjectReact.Models.Items
+namespace XeroVacProjectConsole.Models.Items
 {
     class Door : Item
     {
+        
 
         override public string Interact(Item item)
         {
-            //Item item = location.items.Remove(
+            if(item is Key)
+            {
+                return Interactions.DoorInteractKey(this, (Key)item);
+            }
             return "";
         }
     }

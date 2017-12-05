@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XeroProjectReact.Controllers;
+using XeroVacProjectConsole.Controllers;
 
-namespace XeroProjectReact.Models.Items
+namespace XeroVacProjectConsole.Models.Items
 {
     class Key : Item
     {
@@ -13,13 +13,9 @@ namespace XeroProjectReact.Models.Items
         {
             if(item is Door)
             {
-                return ItemInteractions.DoorKey((Door)item,this);
+                return Interactions.DoorInteractKey((Door)item,this);
             }
             return "";
-        }
-         private string Interact(Door d)
-        {
-            return d.Interact(this);
         }
     }
 }

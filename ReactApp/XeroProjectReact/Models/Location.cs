@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XeroVacProjectConsole.Enums;
+
 
 namespace XeroProjectReact.Models
 {
@@ -27,7 +27,6 @@ namespace XeroProjectReact.Models
 
         
         List<Item> items;
-        List<Environmental> environmentals;
        
         
     }
