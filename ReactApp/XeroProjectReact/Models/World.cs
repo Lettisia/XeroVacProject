@@ -94,7 +94,7 @@ namespace XeroProjectReact.Models
                 {
                     if (character.id == charID)
                     {
-                        return character.characterDescription;
+                        return character.CharacterDescription;
                     }
                 }
             }

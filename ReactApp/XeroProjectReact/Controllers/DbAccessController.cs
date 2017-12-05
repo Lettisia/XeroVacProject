@@ -33,10 +33,10 @@ namespace XeroProjectReact.Controllers
             while (reader.Read())
             {
                 Character character = new Character();
-                character.id = reader.GetInt32(0);
-                character.characterName = reader.GetString(1);
-                character.characterDescription = reader.GetString(2);
-                character.locationId = CheckNullIntegers(reader, 3); 
+                character.Id = reader.GetInt32(0);
+                character.CharacterName = reader.GetString(1);
+                character.CharacterDescription = reader.GetString(2);
+                character.LocationId = CheckNullIntegers(reader, 3); 
                 characterList.Add(character);
             }
 
