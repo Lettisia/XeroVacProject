@@ -9,16 +9,11 @@ namespace XeroProjectReact.Models
 {
     public abstract class Item
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public int? locationId { get; set; }
-        public bool isVisible { get; set; }
-
-        // public Item(int id)
-        // {
-        //
-        // }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int? LocationId { get; set; }
+        public bool IsVisible { get; set; }
 
 
         public abstract string Interact(Item i);
@@ -49,7 +44,5 @@ namespace XeroProjectReact.Models
             }
             //return new Key();
         }
-
-
     }
 }

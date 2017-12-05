@@ -9,10 +9,19 @@ namespace XeroProjectReact.Models
 {
     public class Player
     {
-        List<Item> items;
 
-        public int id { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Location CurrentLocation { get; set; }
+        public List<Item> Inventory { get; set; }
 
+        public void AddItem(Item item)
+        {
+            Inventory.Add(item);
+        }
+
+       
     }
+
+    
 }

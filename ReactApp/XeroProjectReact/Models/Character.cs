@@ -7,13 +7,13 @@ namespace XeroProjectReact.Models
 {
     public class Character
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public string characterName { get; set; }
+        public string CharacterName { get; set; }
 
-        public string characterDescription { get; set; }
+        public string CharacterDescription { get; set; }
 
-        public int? locationId { get; set; }
+        public int? LocationId { get; set; }
 
         public string   CharacterQuery()
         {

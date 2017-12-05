@@ -33,10 +33,10 @@ namespace XeroProjectReact.Controllers
             while (reader.Read())
             {
                 Character character = new Character();
-                character.id = reader.GetInt32(0);
-                character.characterName = reader.GetString(1);
-                character.characterDescription = reader.GetString(2);
-                character.locationId = CheckNullIntegers(reader, 3); 
+                character.Id = reader.GetInt32(0);
+                character.CharacterName = reader.GetString(1);
+                character.CharacterDescription = reader.GetString(2);
+                character.LocationId = CheckNullIntegers(reader, 3); 
                 characterList.Add(character);
             }
 
@@ -56,14 +56,14 @@ namespace XeroProjectReact.Controllers
             {
 
                 Location location = new Location();
-                location.id = reader.GetInt32(0);
-                location.name = reader.GetString(1);
-                location.east = CheckNullIntegers(reader, 2);
-                location.west = CheckNullIntegers(reader, 3);
-                location.north = CheckNullIntegers(reader, 4);
-                location.south = CheckNullIntegers(reader, 5);
-                location.description = reader.GetString(6);
-                location.verboseDescription = reader.GetString(7);
+                location.Id = reader.GetInt32(0);
+                location.Name = reader.GetString(1);
+                location.East = CheckNullIntegers(reader, 2);
+                location.West = CheckNullIntegers(reader, 3);
+                location.North = CheckNullIntegers(reader, 4);
+                location.South = CheckNullIntegers(reader, 5);
+                location.Description = reader.GetString(6);
+                location.VerboseDescription = reader.GetString(7);
                 locations.Add(location);
 
             }

@@ -1,29 +1,21 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
-interface CounterState {
-    currentCount: number;
-    showText: boolean;
-}
-
-
-export class Counter extends React.Component<RouteComponentProps<{}>, CounterState> {
-
-    testData: string;
-
+export class Counter extends React.Component {
     constructor() {
         super();
-        this.state = { currentCount: 0, showText: true };
+        this.state = { 
+            showText: true, 
+            testData: 'hello'
+        };
 
     }
     
-    public render() {
+    render() {
         return <div>
             <h1>Counter</h1>
 
             <p>This is a simple example of a React component.</p>
-
-            <p>Current count: <strong>{ this.state.currentCount }</strong></p>
 
             <button onClick={() => { this.incrementCounter() }}>Increment</button>
 
@@ -32,9 +24,6 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
             <button onClick={() => { this.callDbPost("/Home/DbAccessRow/") }}>TestDbPostCall</button>
 
             <button onClick={() => { this.callDb("/Home/DbAccessRow/") }}>Grab Row</button>
-
-            
-
             
             <button onClick={() => { this.displayText()}}>display</button>
 
@@ -57,12 +46,8 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
         }
     }
     
-
-
-
-
     //https://stackoverflow.com/questions/29775797/fetch-post-json-data
-    async callDbPost(url: string)
+    async callDbPost(url)
     {
         var testQuery = JSON.stringify({ Action: 'PICKUP', Parameter: '4' });
         url += "?jsonStr=" + testQuery;
@@ -82,7 +67,7 @@ export class Counter extends React.Component<RouteComponentProps<{}>, CounterSta
  
     }
 
-    async callDb(url: string) {
+    async callDb(url) {
 
         var response = await fetch(url, {
             method: 'GET'
