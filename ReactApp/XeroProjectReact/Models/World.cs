@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using XeroProjectReact.Controllers;
 
 namespace XeroProjectReact.Models
 {
-    public class World
+    public sealed class World
     {
         public List<Item> ItemList { get; set; }
 
@@ -16,13 +17,24 @@ namespace XeroProjectReact.Models
 
         public Player ThePlayer { get; set; }
 
-        public World ()
+        private static World Instance = null;
+
+        private World()
         {
             DbAccessController dbAccess = new DbAccessController();
             ItemList = dbAccess.InitialiseItems();
             CharacterList = dbAccess.InitialiseCharacter();
             LocationList = dbAccess.InitialiseLocations();
             ThePlayer = new Player();
+        }
+
+        public static World GetInstance()
+        {
+            if (Instance == null)
+            {
+                Instance = new World();
+            }
+            return Instance;
         }
 
         public string ExecuteCommand(Command command)
@@ -32,6 +44,7 @@ namespace XeroProjectReact.Models
                 case "CHARDESC":
                     return GetCharacterDescription(command.Parameter);
                 case "TRAVEL":
+                    return ChangeLocation(command.Parameter);
                 case "PICKUP":
                     return PickUpItem(command.Parameter);
                 case "LOCVERB":
@@ -44,6 +57,40 @@ namespace XeroProjectReact.Models
             }
         }
 
+        public Location GetLocation(string parameter)
+        {
+            try
+            {
+                int locationID = Int32.Parse(parameter);
+                foreach (Location location in LocationList)
+                {
+                    if (location.Id == locationID)
+                    {
+                        return location;
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+
+            }
+            return null;
+        }
+
+        private string ChangeLocation(string parameter)
+        {
+            Location location = GetLocation(parameter);
+
+
+            if (location != null)
+            {
+                ThePlayer.CurrentLocation = location;
+                var cmd = JsonConvert.SerializeObject(location);
+                return cmd;
+            }
+            return "location not found";
+        }
+
         private string PickUpItem(string parameter)
         {
             try
@@ -51,7 +98,7 @@ namespace XeroProjectReact.Models
                 int itemID = Int32.Parse(parameter);
                 foreach (Item item in ItemList)
                 {
-                    if(item.Id == itemID)
+                    if (item.Id == itemID)
                     {
                         ThePlayer.AddItem(item);
                         ThePlayer.CurrentLocation.RemoveItem(item);
@@ -67,21 +114,14 @@ namespace XeroProjectReact.Models
 
         private string GetLocationVerbose(string parameter)
         {
-            try
+            Location location = GetLocation(parameter);
+
+            if (location != null)
             {
-                int locationID = Int32.Parse(parameter);
-                foreach (Location location in LocationList)
-                {
-                    if (location.Id == locationID)
-                    {
-                        return location.VerboseDescription;
-                    }
-                }
+                return location.VerboseDescription;
             }
-            catch (FormatException)
-            {
-                return "Could not parse location id";
-            }
+
+
             return "Location Id not found";
         }
 
@@ -118,7 +158,8 @@ namespace XeroProjectReact.Models
                         return item.Description;
                     }
                 }
-            } catch (FormatException)
+            }
+            catch (FormatException)
             {
                 return "Could not parse item id";
             }
@@ -126,4 +167,3 @@ namespace XeroProjectReact.Models
         }
     }
 }
- 
