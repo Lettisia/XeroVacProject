@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XeroVacProjectConsole.Models.Components;
+using XeroProjectReact.Models;
 
-namespace XeroVacProjectConsole.Models
+namespace XeroProjectReact.Models
 {
-    class Player
+    public class Player
     {
         List<Item> items;
 

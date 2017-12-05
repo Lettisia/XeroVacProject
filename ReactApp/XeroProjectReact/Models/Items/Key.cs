@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XeroVacProjectConsole.Models.Components.Items
+namespace XeroProjectReact.Models.Items
 {
-    class Key
+    class Key : Item
     {
         public void Interact(Door d)
         {

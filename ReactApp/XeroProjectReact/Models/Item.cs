@@ -13,5 +13,17 @@ namespace XeroProjectReact.Models
         public int? locationId { get; set; }
         public bool isVisible { get; set; }
 
+        // public Item(int id)
+        // {
+        //
+        // }
+
+        public static Item ReadItemIntoChildClass()
+        {
+
+            return new Item();
+        }
+
+
     }
 }

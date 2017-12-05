@@ -13,7 +13,7 @@ namespace XeroProjectReact.Models
 
         public string characterDescription { get; set; }
 
-        public int locationId { get; set; }
+        public int? locationId { get; set; }
 
         public string   CharacterQuery()
         {
