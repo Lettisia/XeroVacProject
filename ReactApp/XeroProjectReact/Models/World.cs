@@ -6,7 +6,7 @@ using XeroProjectReact.Controllers;
 
 namespace XeroProjectReact.Models
 {
-    public class World
+    public sealed class World
     {
         public List<Item> ItemList { get; set; }
 
@@ -16,13 +16,24 @@ namespace XeroProjectReact.Models
 
         public Player ThePlayer { get; set; }
 
-        public World ()
+        private static World Instance = null;
+
+        private World ()
         {
             DbAccessController dbAccess = new DbAccessController();
             ItemList = dbAccess.InitialiseItems();
             CharacterList = dbAccess.InitialiseCharacter();
             LocationList = dbAccess.InitialiseLocations();
             ThePlayer = new Player();
+        }
+
+        public static World GetInstance()
+        {
+            if (Instance == null)
+            {
+                Instance = new World();
+            }
+            return Instance;
         }
 
         public string ExecuteCommand(Command command)
