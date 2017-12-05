@@ -11,10 +11,7 @@ namespace XeroProjectReact.Models
 
         public string Parameter { get; set; }
 
-        public void Execute()
-        {
-
-        }
+       
 
         public string DBQuery()
         {

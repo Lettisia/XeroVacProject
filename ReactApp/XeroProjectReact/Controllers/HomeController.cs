@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using Newtonsoft.Json;
 using XeroProjectReact.Models;
-using XeroVacProjectConsole.Models;
 
 namespace XeroProjectReact.Controllers
 {
