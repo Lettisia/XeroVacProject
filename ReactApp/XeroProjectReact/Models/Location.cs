@@ -9,19 +9,26 @@ namespace XeroProjectReact.Models
 {
     public class Location
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string verboseDescription { get; set; }
-        public int? east { get; set; }
-        public int? west { get; set; }
-        public int? north { get; set; }
-        public int? south { get; set; }  
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string VerboseDescription { get; set; }
+        public int? East { get; set; }
+        public int? West { get; set; }
+        public int? North { get; set; }
+        public int? South { get; set; }
+        public List<Item> ItemList { get; set; }
+        
+
+        public void RemoveItem(Item item)
+        {
+            ItemList.Remove(item);
+        }
 
         public string LocationQuery()
         {
 
-            return $"SELECT * FROM location WHERE id = {id}";
+            return $"SELECT * FROM location WHERE id = {Id}";
            
         }
 

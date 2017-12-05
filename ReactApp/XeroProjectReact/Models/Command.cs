@@ -13,18 +13,7 @@ namespace XeroProjectReact.Models
 
         public void Execute()
         {
-            Models model = new Model()
-            switch (Action)
-            {
-                case "CHARDESC":
-                case "TRAVEL":
-                case "PICKUP":
-                case "LOCVERB":
-                case "EXAMINEITEM":
-                case "USEITEM":
-                default:
-                    return;
-            }
+
         }
 
         public string DBQuery()

@@ -56,14 +56,14 @@ namespace XeroProjectReact.Controllers
             {
 
                 Location location = new Location();
-                location.id = reader.GetInt32(0);
-                location.name = reader.GetString(1);
-                location.east = CheckNullIntegers(reader, 2);
-                location.west = CheckNullIntegers(reader, 3);
-                location.north = CheckNullIntegers(reader, 4);
-                location.south = CheckNullIntegers(reader, 5);
-                location.description = reader.GetString(6);
-                location.verboseDescription = reader.GetString(7);
+                location.Id = reader.GetInt32(0);
+                location.Name = reader.GetString(1);
+                location.East = CheckNullIntegers(reader, 2);
+                location.West = CheckNullIntegers(reader, 3);
+                location.North = CheckNullIntegers(reader, 4);
+                location.South = CheckNullIntegers(reader, 5);
+                location.Description = reader.GetString(6);
+                location.VerboseDescription = reader.GetString(7);
                 locations.Add(location);
 
             }
@@ -93,11 +93,11 @@ namespace XeroProjectReact.Controllers
             while (reader.Read())
             {
                 Item item = new Item();
-                item.id = reader.GetInt32(0);
-                item.name = reader.GetString(1);
-                item.description = reader.GetString(2);
-                item.locationId = CheckNullIntegers(reader, 3);
-                item.isVisible = reader.GetBoolean(4);
+                item.Id = reader.GetInt32(0);
+                item.Name = reader.GetString(1);
+                item.Description = reader.GetString(2);
+                item.LocationId = CheckNullIntegers(reader, 3);
+                item.IsVisible = reader.GetBoolean(4);
             }
 
             Console.WriteLine(items);

@@ -24,10 +24,38 @@ namespace XeroProjectReact.Controllers
             return View();
         }
 
-       
+        private static NpgsqlConnection OpenDB()
+        {
+            var con = new NpgsqlConnection("Server=deathoftombstone.cfbtbnwur0gl.ap-southeast-2.rds.amazonaws.com;Port=5432;Database=DeathOfTombstone;User Id=Tombstone;Password=xerotomb");
+            con.Open();
+            return con;
+        }
 
-        //https://stackoverflow.com/questions/44925223/how-to-pass-data-to-controller-using-fetch-api-in-asp-net-core to send objects
-        [HttpPost]
+
+   
+         [HttpPost]		
+         public string DbAccessRow(string jsonStr)
+         {		
+             Console.WriteLine(jsonStr);		
+            var cmd = JsonConvert.DeserializeObject<Command>(jsonStr);		
+             var connection = OpenDB();		
+             var command = new NpgsqlCommand(cmd.DBQuery(), connection);		
+             var reader = command.ExecuteReader();		
+ 		
+             var response = "";		
+             if (reader.Read())		
+             {		
+                 response = reader[0].ToString();		
+             }		
+ 		
+             Console.WriteLine(response);
+
+            return response;		
+         }
+
+
+//https://stackoverflow.com/questions/44925223/how-to-pass-data-to-controller-using-fetch-api-in-asp-net-core to send objects
+[HttpPost]
         public IEnumerable<string> TestDbPostCall(string data)
         {
             List<string> rows = new List<string>();
