@@ -6,10 +6,20 @@ import Counter from './components/Counter';
 
 
 class Home extends React.Component {
+	    constructor(props){
+        super(props);
+    }
     render() {
         return (
             <div class = "box">
                 <img src ={logo} class= 'logo' alt='logo' />
+				<p>By the Xero Vacation Team</p>
+                <form action = "pageOne.js">
+                    <input type = "submit" value="Start Game!" />
+                </form>
+                <div class="container">
+                    <Counter />
+                </div>
                 <p>By the Xero Vacation Team</p>
                 <form action = "pageOne.js">
                     <input type = "submit" value="Start Game!" />
