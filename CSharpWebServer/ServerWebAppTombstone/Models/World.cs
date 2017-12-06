@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ServerWebAppTombstone.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ServerWebAppTombstone.Models
 {
@@ -96,10 +97,11 @@ namespace ServerWebAppTombstone.Models
             if (location != null)
             {
                 ThePlayer.CurrentLocation = location;
-                var cmd = JsonConvert.SerializeObject(location);
-                return cmd;
+                return JsonConvert.SerializeObject(location);
             }
-            return "location not found";
+
+            string Message = "Location not found";
+            return JsonConvert.SerializeObject(Message);
         }
 
         private string PickUpItem(string parameter)
@@ -113,15 +115,15 @@ namespace ServerWebAppTombstone.Models
                     {
                         ThePlayer.AddItem(item);
                         ThePlayer.CurrentLocation.RemoveItem(item);
-                        return "item removed from location";
+                        return JsonConvert.SerializeObject("item removed from location");
                     }
                 }
             }
             catch (FormatException)
             {
-                return "Could not parse item id";
+                return JsonConvert.SerializeObject("Could not parse item id");
             }
-            return "Item Id not found";
+            return JsonConvert.SerializeObject("Item Id not found");
         }
 
         private string GetLocationVerbose(string parameter)
@@ -130,11 +132,11 @@ namespace ServerWebAppTombstone.Models
 
             if (location != null)
             {
-                return location.VerboseDescription;
+                return JsonConvert.SerializeObject(location.VerboseDescription);
             }
 
 
-            return "Location Id not found";
+            return JsonConvert.SerializeObject("Location Id not found");
         }
 
         private string GetCharacterDescription(string parameter)
@@ -146,15 +148,15 @@ namespace ServerWebAppTombstone.Models
                 {
                     if (character.Id == charID)
                     {
-                        return character.CharacterDescription;
+                        return JsonConvert.SerializeObject(character.CharacterDescription);
                     }
                 }
             }
             catch (FormatException)
             {
-                return "Could not parse character id";
+                return JsonConvert.SerializeObject("Could not parse character id");
             }
-            return "Character Id not found";
+            return JsonConvert.SerializeObject("Character Id not found");
 
         }
 
@@ -167,15 +169,15 @@ namespace ServerWebAppTombstone.Models
                 {
                     if (item.Id == itemID)
                     {
-                        return item.Description;
+                        return JsonConvert.SerializeObject(item.Description);
                     }
                 }
             }
             catch (FormatException)
             {
-                return "Could not parse item id";
+                return JsonConvert.SerializeObject("Could not parse item id");
             }
-            return "Item Id not found";
+            return JsonConvert.SerializeObject("Item Id not found");
         }
     }
 }
