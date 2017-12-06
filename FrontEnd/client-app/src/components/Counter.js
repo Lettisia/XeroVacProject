@@ -1,12 +1,14 @@
-import * as React from 'react';
+import * as React from 'react'; 
 
 class Counter extends React.Component {
     constructor() {
         super();
         this.state = { 
             showText: true, 
-            testData: null,
-            link: "http://default-environment.dczmz2y6rg.ap-southeast-2.elasticbeanstalk.com/api/dbaccess/initialisecharacter"
+            character: [], 
+            location: [],
+            link: "http://deathintombstone.ap-southeast-2.elasticbeanstalk.com",
+            getRequest: "/api/dbaccess"
         };
 
     }
@@ -15,16 +17,15 @@ class Counter extends React.Component {
         return <div>
             <h1>Counter</h1>
 
-            <p>This is a simple example of a React component.</p>
+            <p> {this.state.location[0]} </p>
 
-            <button onClick={() => { this.postData("EXAMINE", 1)}}>Post Call</button>
+            <button onClick={() => { this.postData('LOCVERB', '1')}}>Post Call</button>
 
-            <button onClick={() => { this.getData("id", 1) }}>Get Data</button>
+            <button onClick={() => { this.getData("character", 1, "/initialiselocations") }}>Get Data</button>
 
             <button onClick={() => { this.callDb("/Home/DbAccessRow/") }}>Grab Row</button>
             
             <button onClick={() => { this.displayText()}}>display</button>
-
 
             <p id="story" hidden={this.state.showText}>
                 {this.testData}
@@ -39,78 +40,38 @@ class Counter extends React.Component {
     }
     
     //https://stackoverflow.com/questions/29775797/fetch-post-json-data
-    // async callDbPost(url)
-    // {
-    //     var testQuery = JSON.stringify({ Action: 'PICKUP', Parameter: '4' });
-    //     url += "?jsonStr=" + testQuery;
 
-    //     var response = fetch(url, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //         },
-    //     });
-
-    //     var json = response.json();
-    //     console.log(json);
-        
-    //     this.testData = json;
- 
-    // }
-
-    getData(_propertyName, _id) { //CHANGE ACCORDING TO DATA WANTED
+    getData(_propertyName, _id, _apiLink) {
 
         var dataRequestReturn = null; 
 
-        fetch(this.state.link, {
+        fetch(this.state.link + this.state.getRequest + _apiLink, {
             method: 'GET', 
-            mode: 'cors',
-            headers: {
-                'Access-Control-Allow-Origin': "*"
-            }
         }
         ).then(results => {
             return results.json(); 
-        }).then(data =>{
-            dataRequestReturn = data._propertyName._id; //CHECK DATA FORMAT
-            console.log(dataRequestReturn); 
+        }).then(data =>{ 
+            this.setState({_propertyName: data[_id - 1]}); 
+            console.log(this.state._propertyName); 
+            console.log("fetch complete"); 
         })
-
         return dataRequestReturn; 
+
     }
 
-    postData(_action, _parameter) {
+    async postData(_action, _parameter) {
 
-        var postQuery = JSON.stringify({Action: _action, Parameter: _parameter}); 
-        var response = fetch(this.state.link + postQuery, {
-            method: 'POST'
+        // var fetchResponse = null; 
+        var postQuery = JSON.stringify({Action: _action, Parameter: _parameter});  
+        fetch(this.state.link + "/command?jsonStr=" + postQuery, {
+            method: 'GET'
+        }).then(response => {
+            return response.text(); 
+        }).then(data => {
+            //fetchResponse = data; 
+            console.log(data); 
         }); 
-
-        return response; 
     }
-
-    // async callDb(url) {
-
-    //     var response = fetch(url, {
-    //         method: 'GET'
-    //     });
-        
-    //     var json = response.json();
-    //     console.log(json);
-
-    //     /*
-    //     console.log(fetch("/Home/TestDbCallDelete", {
-    //         method: 'GET'
-    //     }).then(function (resp) {
-    //         return resp.json();
-    //     }).then(function (data) {
-    //         console.log(data);
-    //         //can call set state
-    //         })
-    //     );
-    //     */
-    // }
 }
 
 export default Counter; 
