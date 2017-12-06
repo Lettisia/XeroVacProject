@@ -132,7 +132,7 @@ namespace ServerWebAppTombstone.Models
                 int charID = Int32.Parse(parameter);
                 foreach (Character character in CharacterList)
                 {
-                    if (character.id == charID)
+                    if (character.Id == charID)
                     {
                         return character.CharacterDescription;
                     }

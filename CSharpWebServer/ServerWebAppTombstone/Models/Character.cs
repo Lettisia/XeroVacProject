@@ -18,7 +18,7 @@ namespace ServerWebAppTombstone.Models
         public string   CharacterQuery()
         {
 
-            return $"SELECT * FROM character WHERE id = {id}";
+            return $"SELECT * FROM character WHERE id = {Id}";
 
         }
     }

@@ -27,7 +27,7 @@ namespace ServerWebAppTombstone.Controllers
         public List<Character> InitialiseCharacter()
         {
             var connection = OpenDB();
-            var command = new NpgsqlCommand("SELECT * FROM charcter", connection);
+            var command = new NpgsqlCommand("SELECT * FROM character", connection);
             var reader = command.ExecuteReader();
 
             List<Character> characterList = new List<Character>();

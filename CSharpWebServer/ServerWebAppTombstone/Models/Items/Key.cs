@@ -7,7 +7,7 @@ using ServerWebAppTombstone.Controllers;
 
 namespace ServerWebAppTombstone.Models.Items
 {
-    class Key : Item
+    public class Key : Item
     {
         override public string Interact(Item item)
         {

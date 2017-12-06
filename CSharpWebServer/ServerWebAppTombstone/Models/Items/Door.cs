@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServerWebAppTombstone.Models.Items
 {
-    class Door : Item
+    public class Door : Item
     {
 
         override public string Interact(Item item)
