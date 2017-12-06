@@ -65,7 +65,7 @@ namespace ServerWebAppTombstone.Models
                     return GetItemDescription(command.Parameter);
                 case "USEITEM":
                 default:
-                    return "invalid";
+                    return JsonConvert.SerializeObject("Invalid Command");
             }
         }
 
@@ -109,13 +109,14 @@ namespace ServerWebAppTombstone.Models
             try
             {
                 int itemID = Int32.Parse(parameter);
-                foreach (Item item in ItemList)
+                foreach (Item item in ThePlayer.CurrentLocation.ItemList)
                 {
                     if (item.Id == itemID)
                     {
                         ThePlayer.AddItem(item);
                         ThePlayer.CurrentLocation.RemoveItem(item);
-                        return JsonConvert.SerializeObject("item removed from location");
+                        return JsonConvert.SerializeObject(
+                            $"Item {item.Name} picked up from from location {ThePlayer.CurrentLocation.Name}");
                     }
                 }
             }
@@ -123,7 +124,7 @@ namespace ServerWebAppTombstone.Models
             {
                 return JsonConvert.SerializeObject("Could not parse item id");
             }
-            return JsonConvert.SerializeObject("Item Id not found");
+            return JsonConvert.SerializeObject("Item Id not found in this location");
         }
 
         private string GetLocationVerbose(string parameter)
