@@ -26,7 +26,18 @@ namespace ServerWebAppTombstone.Models
             CharacterList = dbAccess.InitialiseCharacter();
             LocationList = dbAccess.InitialiseLocations();
             ThePlayer = new Player();
-        }
+            ThePlayer.CurrentLocation = LocationList.Find(location => location.IsStart == true);
+
+            foreach (Item item in ItemList)
+            {
+                Location newLocation = LocationList.Find(location => location.Id == item.LocationId);
+                if (newLocation != null)
+                {
+                    newLocation.Additem(item);
+                }
+
+            }
+        } 
 
         public static World GetInstance()
         {
@@ -102,6 +113,7 @@ namespace ServerWebAppTombstone.Models
                     {
                         ThePlayer.AddItem(item);
                         ThePlayer.CurrentLocation.RemoveItem(item);
+                        return "item removed from location";
                     }
                 }
             }

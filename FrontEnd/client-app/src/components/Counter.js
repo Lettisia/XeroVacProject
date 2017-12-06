@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
 
-export class Counter extends React.Component {
+class Counter extends React.Component {
     constructor() {
         super();
         this.state = { 
             showText: true, 
-            testData: 'hello'
+            testData: null,
+            link: "http://default-environment.dczmz2y6rg.ap-southeast-2.elasticbeanstalk.com/api/dbaccess/initialisecharacter"
         };
 
     }
@@ -17,11 +17,9 @@ export class Counter extends React.Component {
 
             <p>This is a simple example of a React component.</p>
 
-            <button onClick={() => { this.incrementCounter() }}>Increment</button>
+            <button onClick={() => { this.postData("EXAMINE", 1)}}>Post Call</button>
 
-            <button onClick={() => { this.callDb("/Home/TestDbCallDelete/") }}>TestDbCall</button>
-
-            <button onClick={() => { this.callDbPost("/Home/DbAccessRow/") }}>TestDbPostCall</button>
+            <button onClick={() => { this.getData("id", 1) }}>Get Data</button>
 
             <button onClick={() => { this.callDb("/Home/DbAccessRow/") }}>Grab Row</button>
             
@@ -33,12 +31,6 @@ export class Counter extends React.Component {
             </p>
         </div>;
     }
-
-    incrementCounter() {
-        this.setState({
-            currentCount: this.state.currentCount + 1
-        });
-    }
     
     displayText() {
         if (this.testData != null) {
@@ -47,45 +39,78 @@ export class Counter extends React.Component {
     }
     
     //https://stackoverflow.com/questions/29775797/fetch-post-json-data
-    async callDbPost(url)
-    {
-        var testQuery = JSON.stringify({ Action: 'PICKUP', Parameter: '4' });
-        url += "?jsonStr=" + testQuery;
+    // async callDbPost(url)
+    // {
+    //     var testQuery = JSON.stringify({ Action: 'PICKUP', Parameter: '4' });
+    //     url += "?jsonStr=" + testQuery;
 
-        var response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-        });
+    //     var response = fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //     });
 
-        var json = await response.json();
-        console.log(json);
+    //     var json = response.json();
+    //     console.log(json);
         
-        this.testData = json;
+    //     this.testData = json;
  
+    // }
+
+    getData(_propertyName, _id) { //CHANGE ACCORDING TO DATA WANTED
+
+        var dataRequestReturn = null; 
+
+        fetch(this.state.link, {
+            method: 'GET', 
+            mode: 'cors',
+            headers: {
+                'Access-Control-Allow-Origin': "*"
+            }
+        }
+        ).then(results => {
+            return results.json(); 
+        }).then(data =>{
+            dataRequestReturn = data._propertyName._id; //CHECK DATA FORMAT
+            console.log(dataRequestReturn); 
+        })
+
+        return dataRequestReturn; 
     }
 
-    async callDb(url) {
+    postData(_action, _parameter) {
 
-        var response = await fetch(url, {
-            method: 'GET'
-        });
+        var postQuery = JSON.stringify({Action: _action, Parameter: _parameter}); 
+        var response = fetch(this.state.link + postQuery, {
+            method: 'POST'
+        }); 
+
+        return response; 
+    }
+
+    // async callDb(url) {
+
+    //     var response = fetch(url, {
+    //         method: 'GET'
+    //     });
         
-        var json = await response.json();
-        console.log(json);
+    //     var json = response.json();
+    //     console.log(json);
 
-        /*
-        console.log(fetch("/Home/TestDbCallDelete", {
-            method: 'GET'
-        }).then(function (resp) {
-            return resp.json();
-        }).then(function (data) {
-            console.log(data);
-            //can call set state
-            })
-        );
-        */
-    }
+    //     /*
+    //     console.log(fetch("/Home/TestDbCallDelete", {
+    //         method: 'GET'
+    //     }).then(function (resp) {
+    //         return resp.json();
+    //     }).then(function (data) {
+    //         console.log(data);
+    //         //can call set state
+    //         })
+    //     );
+    //     */
+    // }
 }
+
+export default Counter; 

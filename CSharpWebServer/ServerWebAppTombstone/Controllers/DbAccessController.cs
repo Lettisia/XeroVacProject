@@ -66,6 +66,7 @@ namespace ServerWebAppTombstone.Controllers
                 location.South = CheckNullIntegers(reader, 5);
                 location.Description = reader.GetString(6);
                 location.VerboseDescription = reader.GetString(7);
+                location.IsStart = reader.GetBoolean(8);
                 locations.Add(location);
 
             }

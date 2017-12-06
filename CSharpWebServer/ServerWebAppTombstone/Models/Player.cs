@@ -15,6 +15,12 @@ namespace ServerWebAppTombstone.Models
         public Location CurrentLocation { get; set; }
         public List<Item> Inventory { get; set; }
 
+        public Player()
+        {
+            Inventory = new List<Item>();
+        }
+
+
         public void AddItem(Item item)
         {
             Inventory.Add(item);

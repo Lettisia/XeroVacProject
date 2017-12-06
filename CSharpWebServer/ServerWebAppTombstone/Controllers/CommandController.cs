@@ -10,14 +10,15 @@ namespace ServerWebAppTombstone.Controllers
 {
     public class CommandController : Controller
     {
+        /*
         [HttpGet]
         [Route("/command")]
         public IActionResult Get()
         {
             return Ok(new { message = "hello" });
-        }
+        }*/
 
-        [HttpPost]
+        [HttpGet]
         [Route("/command")]
         public IActionResult RunCommand(string jsonStr)
         {
