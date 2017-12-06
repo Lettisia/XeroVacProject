@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'; 
 import logo from './images/DeathLogo.jpg';
 import './css/index.css';
-import {Router, Route} from 'react-router'; 
-import routes from './routes'; 
+import Counter from './components/Counter';
 
 
 class Home extends React.Component {
@@ -21,7 +20,7 @@ class Home extends React.Component {
                     <input type = "submit" value="Start Game!" />
                 </form>
                 <div class="container">
-                    <Router routes={routes}/>
+                    <Counter />
                 </div>
             </div>
         ); 
