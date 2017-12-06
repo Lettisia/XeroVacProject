@@ -37,9 +37,7 @@ namespace ServerWebAppTombstone.Models
                 }
 
             }
-        }
-
-        
+        } 
 
         public static World GetInstance()
         {
@@ -115,6 +113,7 @@ namespace ServerWebAppTombstone.Models
                     {
                         ThePlayer.AddItem(item);
                         ThePlayer.CurrentLocation.RemoveItem(item);
+                        return "item removed from location";
                     }
                 }
             }
