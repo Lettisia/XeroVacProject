@@ -25,18 +25,14 @@ namespace ServerWebAppTombstone.Models
             switch (id)
             {
                 case (1):
-                    return new Key();
+                    return new Herb();
                 case (2):
-                    return new Door();
+                    return new Coin();
                 case (3):
-                    return new Door();
+                    return new Gun();
                 case (4):
-                    return new Door();
+                    return new Key();
                 case (5):
-                    return new Door();
-                case (6):
-                    return new Door();
-                case (7):
                     return new Door();
                 default:
                     return null;

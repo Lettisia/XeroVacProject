@@ -17,9 +17,6 @@ namespace ServerWebAppTombstone.Models.Items
             }
             return "";
         }
-         private string Interact(Door d)
-        {
-            return d.Interact(this);
-        }
+
     }
 }
