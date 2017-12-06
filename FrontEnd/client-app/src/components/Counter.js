@@ -3,8 +3,7 @@ import * as React from 'react';
 class Counter extends React.Component {
     constructor() {
         super();
-        this.state = { 
-            showText: true, 
+        this.state = {  
             character: [], 
             location: [],
             link: "http://deathintombstone.ap-southeast-2.elasticbeanstalk.com",
@@ -17,25 +16,20 @@ class Counter extends React.Component {
         return <div>
             <h1>Counter</h1>
 
-            <p> {this.state.location[0]} </p>
+            <p> {this.state.location.name} </p>
 
-            <button onClick={() => { this.postData('LOCVERB', '1')}}>Post Call</button>
+            <button onClick={() => { this.postData('CHARDESC', '1')}}>Post Call</button>
 
-            <button onClick={() => { this.getData("character", 1, "/initialiselocations") }}>Get Data</button>
+            <button onClick={() => { this.getData("location", 1, "/initialiselocations") }}>Get Data</button>
 
-            <button onClick={() => { this.callDb("/Home/DbAccessRow/") }}>Grab Row</button>
-            
-            <button onClick={() => { this.displayText()}}>display</button>
-
-            <p id="story" hidden={this.state.showText}>
-                {this.testData}
-            </p>
         </div>;
     }
-    
-    displayText() {
-        if (this.testData != null) {
-            this.setState({ showText: false });
+
+    handleSetState(_propertyName, _data) {
+        if (_propertyName === "location") {
+            this.setState({location: _data}); 
+        } else if (_propertyName === "character"){
+            this.setState({character: _data}); 
         }
     }
     
@@ -51,15 +45,15 @@ class Counter extends React.Component {
         ).then(results => {
             return results.json(); 
         }).then(data =>{ 
-            this.setState({_propertyName: data[_id - 1]}); 
-            console.log(this.state._propertyName); 
+            this.handleSetState(_propertyName, data[_id - 1]); 
             console.log("fetch complete"); 
-        })
+        });
+
         return dataRequestReturn; 
 
     }
 
-    async postData(_action, _parameter) {
+    postData(_action, _parameter) {
 
         // var fetchResponse = null; 
         var postQuery = JSON.stringify({Action: _action, Parameter: _parameter});  
