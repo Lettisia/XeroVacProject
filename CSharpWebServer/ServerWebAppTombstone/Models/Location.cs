@@ -17,11 +17,20 @@ namespace ServerWebAppTombstone.Models
         public int? North { get; set; }
         public int? South { get; set; }
         public List<Item> ItemList { get; set; }
-        
+        public bool IsStart { get; set; }
 
+        public Location()
+        {
+            ItemList = new List<Item>();
+        }
         public void RemoveItem(Item item)
         {
             ItemList.Remove(item);
+        }
+
+        public void Additem(Item item)
+        {
+            ItemList.Add(item);
         }
 
         public string LocationQuery()

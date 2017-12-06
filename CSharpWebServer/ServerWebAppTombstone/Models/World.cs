@@ -26,7 +26,20 @@ namespace ServerWebAppTombstone.Models
             CharacterList = dbAccess.InitialiseCharacter();
             LocationList = dbAccess.InitialiseLocations();
             ThePlayer = new Player();
+            ThePlayer.CurrentLocation = LocationList.Find(location => location.IsStart == true);
+
+            foreach (Item item in ItemList)
+            {
+                Location newLocation = LocationList.Find(location => location.Id == item.LocationId);
+                if (newLocation != null)
+                {
+                    newLocation.Additem(item);
+                }
+
+            }
         }
+
+        
 
         public static World GetInstance()
         {
@@ -132,7 +145,7 @@ namespace ServerWebAppTombstone.Models
                 int charID = Int32.Parse(parameter);
                 foreach (Character character in CharacterList)
                 {
-                    if (character.id == charID)
+                    if (character.Id == charID)
                     {
                         return character.CharacterDescription;
                     }

@@ -27,7 +27,7 @@ namespace ServerWebAppTombstone.Controllers
         public List<Character> InitialiseCharacter()
         {
             var connection = OpenDB();
-            var command = new NpgsqlCommand("SELECT * FROM charcter", connection);
+            var command = new NpgsqlCommand("SELECT * FROM character", connection);
             var reader = command.ExecuteReader();
 
             List<Character> characterList = new List<Character>();
@@ -66,6 +66,7 @@ namespace ServerWebAppTombstone.Controllers
                 location.South = CheckNullIntegers(reader, 5);
                 location.Description = reader.GetString(6);
                 location.VerboseDescription = reader.GetString(7);
+                location.IsStart = reader.GetBoolean(8);
                 locations.Add(location);
 
             }
