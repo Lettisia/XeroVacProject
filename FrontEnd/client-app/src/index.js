@@ -16,7 +16,6 @@ class Home extends React.Component {
                 <div class="container">
                     <NavBar />
                     <div class="content">
-                        <Counter />
                         <img src ={logo} class= 'logo' alt='logo' />
                         <p>By the Xero Vacation Team</p>
                         <form action = "pageOne.js">

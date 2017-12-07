@@ -44,9 +44,7 @@ class NavBar extends React.Component {
                 </div>
                 <div class="player_section">
                     <h1 id="player_header">William Wyatt</h1>
-                    <ul>
-                        <li>{this.state.player.name}</li>
-                    </ul>
+                    <p>{this.state.player.name}</p>
                 </div>
             </nav>
 
