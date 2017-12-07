@@ -36,16 +36,13 @@ class NavBar extends React.Component {
     render() {
         return (
             <nav>
-                <div class="inventory_section">
+                <div className="inventory_section">
                     <h1 id="inventory_header">Inventory</h1>
                 </div>
-                <div class="environment_section">
+                <div className="environment_section">
                     <h1 id="environment_header">Environment</h1>
                 </div>
-                <div>
-                    <button onClick={ () => { this.setLocation(1) } }>Increment</button>
-                </div>
-                <div class="player_section">
+                <div className="player_section">
                     <h1 id="player_header">William Wyatt</h1>
 
                     <p>{this.state.player.name}</p>

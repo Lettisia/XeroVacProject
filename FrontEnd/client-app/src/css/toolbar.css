@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Nashville'; 
     font-style: normal; 
-    src: url('/fonts/NASHVILL.ttf') format('truetype'); 
+    src: url('./fonts/NASHVILL.ttf') format('truetype'); 
 }
 
 .toolbar_content {
@@ -12,7 +12,8 @@
     background-color: #333;
     height: 65px; 
     position: relative; 
-
+    text-align: center; 
+    font-size: 25px; 
 }
 .toolbar_content.ul {
     list-style-type: none;
