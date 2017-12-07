@@ -1,0 +1,25 @@
+nav {
+    width: 25%; 
+    height: 100%; 
+    position: fixed; 
+    top: 0px; 
+    padding-top: 1%; 
+}
+
+.inventory_section {
+    height: 40%; 
+}
+
+.environment_section {
+    height: 40%; 
+
+}
+
+.player_section {
+    height: 20%; 
+
+}
+
+ul {
+    list-style-type: none; 
+}
