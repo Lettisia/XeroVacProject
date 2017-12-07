@@ -4,7 +4,11 @@ import logo from './images/DeathLogo.jpg';
 import './css/index.css';
 import Counter from './components/Counter';
 import NavBar from './components/navBar'; 
-
+import SceneOne from '../src/components/SceneOne'; 
+import SceneTwo from '../src/components/SceneTwo';
+import SceneThree from '../src/components/SceneThree'; 
+import SceneFour from '../src/components/SceneFour'; 
+import SceneFive from '../src/components/SceneFive'; 
 
 class Home extends React.Component {
 	    constructor(props){
@@ -20,7 +24,12 @@ class Home extends React.Component {
                         <p>By the Xero Vacation Team</p>
                         <form action = "pageOne.js">
                             <input type = "submit" value="Start Game!" />
-                        </form>
+                        </form> 
+                     <SceneOne/>
+                    <SceneTwo/>
+                    <SceneThree/>
+                    <SceneFour/>
+                    <SceneFive/>                       
                     </div>
                 </div>
             </div>
