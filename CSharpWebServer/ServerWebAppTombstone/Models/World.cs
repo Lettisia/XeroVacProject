@@ -70,9 +70,21 @@ namespace ServerWebAppTombstone.Models
                     return DropItem(command.Parameter);
                 case "WHERETOGO":
                     return CanGoHere(command.Parameter);
+                case "GETINVENTORY":
+                    return InventoryList();
                 default:
                     return JsonConvert.SerializeObject(new { Message = "Invalid Command" });
             }
+        }
+
+        private string InventoryList()
+        {
+            List<Item> invent = ThePlayer.Inventory;
+
+            if (invent.Count == 0)
+                return JsonConvert.SerializeObject(new { Message = "Player inventory is empty" });
+            else
+                return JsonConvert.SerializeObject(invent);
         }
 
         private string CanGoHere(string parameter)
