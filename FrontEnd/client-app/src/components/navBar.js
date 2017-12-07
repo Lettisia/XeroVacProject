@@ -29,8 +29,12 @@ class NavBar extends React.Component {
 
     async setLocation(_id) {
         var _propertyName = "location"; 
-        var result = await Helper.getData("location", 1, "/initialiselocations");  
-        this.handleSetState(_propertyName, result); 
+       // var result = await Helper.getData("location", _id, "/initialiselocations");  
+     // console.log(result);
+        var _test = await  Helper.getInfo(_id);
+        console.log(_test);
+
+        this.handleSetState(_propertyName, _test); 
     }
 
     render() {
@@ -45,6 +49,7 @@ class NavBar extends React.Component {
                 <div class="player_section">
                     <h1 id="player_header">William Wyatt</h1>
                     <p>{this.state.player.name}</p>
+
                 </div>
             </nav>
 
