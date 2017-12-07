@@ -1,11 +1,10 @@
 .box {
-    float: left; 
-    display: inline; 
-    position: relative; 
+    margin: 0px; 
 }
 
 .content {
     margin-left: 25%; 
+
     font-weight: bold;
     font-family: sans-serif;
     text-align: center;
@@ -18,7 +17,7 @@
 }
 
 button {
-align: center;
+    align: center;
 }
 
 
