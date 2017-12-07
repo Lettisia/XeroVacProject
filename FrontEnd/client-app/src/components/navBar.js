@@ -28,7 +28,7 @@ class NavBar extends React.Component {
         var _propertyName = "location"; 
         var result = await Helper.getData(_propertyName, 1, "/initialiselocations"); 
         console.log(result);
-        this.handleSetState(_propertyName, result); 
+        //this.handleSetState(_propertyName, result); 
         console.log(this.state.player); 
     }
 
@@ -41,11 +41,15 @@ class NavBar extends React.Component {
                 <div class="environment_section">
                     <h1 id="environment_header">Environment</h1>
                 </div>
+                <div>
+                    <button onClick={ () => { this.setLocation(1) } }>Increment</button>
+                </div>
                 <div class="player_section">
                     <h1 id="player_header">William Wyatt</h1>
                     <ul>
                         <li>{this.state.player}</li>
                     </ul>
+
                 </div>
             </nav>
 

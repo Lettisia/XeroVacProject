@@ -17,7 +17,7 @@ namespace ServerWebAppTombstone.Models.Items
                 return ItemInteractions.DoorKey(this, (Key)item);
             }
             //Item item = location.items.Remove(
-            return "";
+            return "Nothing interesting happened";
         }
     }
 }
