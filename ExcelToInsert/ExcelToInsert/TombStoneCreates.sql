@@ -123,10 +123,11 @@ DROP TABLE IF EXISTS command CASCADE;
 
 CREATE TABLE command
 (
-    name character varying(20) NOT NULL,
+    name character varying(50) NOT NULL,
     description character varying(250),
     PRIMARY KEY (name)
 );
 
 ALTER TABLE command
     OWNER to "Tombstone";
+
