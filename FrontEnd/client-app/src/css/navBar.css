@@ -19,3 +19,7 @@ nav {
     height: 20%; 
 
 }
+
+ul {
+    list-style-type: none; 
+}

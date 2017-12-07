@@ -12,12 +12,15 @@ class NavBar extends React.Component {
             link: "http://deathintombstone.ap-southeast-2.elasticbeanstalk.com",
             getRequest: "/api/dbaccess"
         };
+    }
 
+    componentDidMount() {
         this.setLocation(1); 
     }
 
     handleSetState(_propertyName, _data) {
         if (_propertyName === "location") {
+            console.log(_data)
             this.setState({player: _data}); 
         } else if (_propertyName === "character"){
             this.setState({character: _data}); 
@@ -26,10 +29,8 @@ class NavBar extends React.Component {
 
     async setLocation(_id) {
         var _propertyName = "location"; 
-        var result = await Helper.getData(_propertyName, 1, "/initialiselocations"); 
-        console.log(result);
+        var result = await Helper.getData("location", 1, "/initialiselocations");  
         this.handleSetState(_propertyName, result); 
-        console.log(this.state.player); 
     }
 
     render() {
@@ -44,7 +45,7 @@ class NavBar extends React.Component {
                 <div class="player_section">
                     <h1 id="player_header">William Wyatt</h1>
                     <ul>
-                        <li>{this.state.player}</li>
+                        <li>{this.state.player.name}</li>
                     </ul>
                 </div>
             </nav>
