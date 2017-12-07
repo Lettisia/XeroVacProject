@@ -1,22 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
 nav {
     width: 25%; 
     height: 100%; 
     position: fixed; 
-    top: 0px; 
-    padding-top: 1%; 
+    top: 65px; 
+    font-family: 'PT Sans'; 
+    margin: 0; 
 }
 
 .inventory_section {
-    height: 40%; 
+    height: 35%; 
+    background: #9f85c0; 
 }
 
 .environment_section {
-    height: 40%; 
-
+    height: 35%; 
+    background: #be95c4; 
 }
 
 .player_section {
-    height: 20%; 
+    height: 30%; 
 
 }
 
