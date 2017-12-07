@@ -4,16 +4,13 @@ import logo from './images/DeathLogo.jpg';
 import './css/index.css';
 import Counter from './components/Counter';
 import NavBar from './components/navBar'; 
-<<<<<<< HEAD
 import SceneOne from '../src/components/SceneOne'; 
 import SceneTwo from '../src/components/SceneTwo';
 import SceneThree from '../src/components/SceneThree'; 
 import SceneFour from '../src/components/SceneFour'; 
 import SceneFive from '../src/components/SceneFive'; 
-=======
 import Toolbar from './components/toolbar'; 
 
->>>>>>> d58abf8a674753ca3bc8909f1873463eadb1e9a6
 
 class Home extends React.Component {
 	    constructor(props){
