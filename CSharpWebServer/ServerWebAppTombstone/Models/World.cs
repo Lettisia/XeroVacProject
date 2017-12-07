@@ -38,6 +38,9 @@ namespace ServerWebAppTombstone.Models
                     newLocation.Additem(item);
                 }
 
+                if (item.Id == 3)
+                    ThePlayer.AddItem(item);
+
             }
         } 
 
