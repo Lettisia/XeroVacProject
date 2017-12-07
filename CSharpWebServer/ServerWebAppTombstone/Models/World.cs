@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ServerWebAppTombstone.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace ServerWebAppTombstone.Models
 {
@@ -64,9 +65,71 @@ namespace ServerWebAppTombstone.Models
                 case "EXAMINEITEM":
                     return GetItemDescription(command.Parameter);
                 case "USEITEM":
+
+                case "DROPITEM":
+                    return DropItem(command.Parameter);
+                case "WHERETOGO":
+                    return CanGoHere(command.Parameter);
                 default:
-                    return JsonConvert.SerializeObject("Invalid Command");
+                    return JsonConvert.SerializeObject(new { Message = "Invalid Command" });
             }
+        }
+
+        private string CanGoHere(string parameter)
+        {
+            Location location = GetLocation(parameter);
+            if (location == null)
+            {
+                return JsonConvert.SerializeObject(new { Message = "Unknown Location" });
+            }
+
+            List<Location> canGo = new List<Location>();
+            if (location.East != null)
+            {
+                Location east = GetLocation(location.East.ToString());
+                canGo.Add(east);
+            }
+            if (location.South != null)
+            {
+                Location south = GetLocation(location.South.ToString());
+                canGo.Add(south);
+            }
+            if (location.West != null)
+            {
+                Location west = GetLocation(location.West.ToString());
+                canGo.Add(west);
+            }
+            if (location.North != null)
+            {
+                Location north = GetLocation(location.North.ToString());
+                canGo.Add(north);
+            }
+            return JsonConvert.SerializeObject(canGo);
+        }
+
+        private string DropItem(string parameter)
+        {
+            try
+            {
+                int itemID = Int32.Parse(parameter);
+                foreach (Item item in ThePlayer.Inventory)
+                {
+                    if (item.Id == itemID)
+                    {
+                        ThePlayer.CurrentLocation.Additem(item);
+                        ThePlayer.RemoveItem(item);
+                        return JsonConvert.SerializeObject(new
+                        {
+                            Message = $"Item {item.Name} dropped in location {ThePlayer.CurrentLocation.Name}"
+                        });
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                return JsonConvert.SerializeObject(new { Message = "Could not parse item id" });
+            }
+            return JsonConvert.SerializeObject(new { Message = "Item Id not found in this location" });
         }
 
         public Location GetLocation(string parameter)
@@ -82,10 +145,7 @@ namespace ServerWebAppTombstone.Models
                     }
                 }
             }
-            catch (FormatException)
-            {
-
-            }
+            catch (FormatException) {}
             return null;
         }
 
@@ -93,15 +153,13 @@ namespace ServerWebAppTombstone.Models
         {
             Location location = GetLocation(parameter);
 
-
             if (location != null)
             {
                 ThePlayer.CurrentLocation = location;
                 return JsonConvert.SerializeObject(location);
             }
-
-            string Message = "Location not found";
-            return JsonConvert.SerializeObject(Message);
+            
+            return JsonConvert.SerializeObject(new { Message = "Location not found" });
         }
 
         private string PickUpItem(string parameter)
@@ -115,16 +173,18 @@ namespace ServerWebAppTombstone.Models
                     {
                         ThePlayer.AddItem(item);
                         ThePlayer.CurrentLocation.RemoveItem(item);
-                        return JsonConvert.SerializeObject(
-                            $"Item {item.Name} picked up from from location {ThePlayer.CurrentLocation.Name}");
+                        return JsonConvert.SerializeObject(new
+                        {
+                            Message = $"Item {item.Name} picked up from from location {ThePlayer.CurrentLocation.Name}"
+                        });
                     }
                 }
             }
             catch (FormatException)
             {
-                return JsonConvert.SerializeObject("Could not parse item id");
+                return JsonConvert.SerializeObject(new { Message = "Could not parse item id" });
             }
-            return JsonConvert.SerializeObject("Item Id not found in this location");
+            return JsonConvert.SerializeObject(new { Message = "Item Id not found in this location" });
         }
 
         private string GetLocationVerbose(string parameter)
@@ -133,11 +193,11 @@ namespace ServerWebAppTombstone.Models
 
             if (location != null)
             {
-                return JsonConvert.SerializeObject(location.VerboseDescription);
+                return JsonConvert.SerializeObject(new { Message = location.VerboseDescription });
             }
 
 
-            return JsonConvert.SerializeObject("Location Id not found");
+            return JsonConvert.SerializeObject(new { Message = "Location Id not found" });
         }
 
         private string GetCharacterDescription(string parameter)
@@ -149,15 +209,15 @@ namespace ServerWebAppTombstone.Models
                 {
                     if (character.Id == charID)
                     {
-                        return JsonConvert.SerializeObject(character.CharacterDescription);
+                        return JsonConvert.SerializeObject(new { Message = character.CharacterDescription });
                     }
                 }
             }
             catch (FormatException)
             {
-                return JsonConvert.SerializeObject("Could not parse character id");
+                return JsonConvert.SerializeObject(new { Message = "Could not parse character id" });
             }
-            return JsonConvert.SerializeObject("Character Id not found");
+            return JsonConvert.SerializeObject(new { Message = "Character Id not found" });
 
         }
 
@@ -170,15 +230,15 @@ namespace ServerWebAppTombstone.Models
                 {
                     if (item.Id == itemID)
                     {
-                        return JsonConvert.SerializeObject(item.Description);
+                        return JsonConvert.SerializeObject(new { Message = item.Description });
                     }
                 }
             }
             catch (FormatException)
             {
-                return JsonConvert.SerializeObject("Could not parse item id");
+                return JsonConvert.SerializeObject(new { Message = "Could not parse item id" });
             }
-            return JsonConvert.SerializeObject("Item Id not found");
+            return JsonConvert.SerializeObject(new { Message = "Item Id not found" });
         }
     }
 }

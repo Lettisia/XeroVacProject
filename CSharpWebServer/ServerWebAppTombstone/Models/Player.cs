@@ -26,7 +26,10 @@ namespace ServerWebAppTombstone.Models
             Inventory.Add(item);
         }
 
-       
+        internal void RemoveItem(Item item)
+        {
+            Inventory.Remove(item);
+        }
     }
 
     
