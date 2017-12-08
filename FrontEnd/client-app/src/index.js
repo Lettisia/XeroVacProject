@@ -29,8 +29,7 @@ class Home extends React.Component {
                         <form action = "pageOne.js">
                             <input type = "submit" value="Start Game!" />
                         </form> 
-                        <Letty />
-                     <SceneOne/>
+                    <SceneOne/>
                     <SceneTwo/>
                     <SceneThree/>
                     <SceneFour/>

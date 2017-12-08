@@ -22,17 +22,14 @@ class Letty extends React.Component {
     render() {
         return(
             <div>
-                <button class="mdc-button" onClick={this.handleClick}>
-                {this.state.data}
-            </button>
+                <a href="" onClick={this.handleClick}>
+                Town Drunk
+            </a>
         </div>
         )
     }
 
     handleClick() {
-        //e.preventDefault();
-        console.log('The link was clicked.');
-        //console.log(this.state.data);
         window.alert(this.state.data);
     }
     
