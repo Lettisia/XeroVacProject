@@ -16,16 +16,17 @@ export class Helper {
         return json[_id - 1]; 
     }
 
-    static postData(_action, _parameter) {
+    static async postData(_action, _parameter) {
         
         var postQuery = JSON.stringify({Action: _action, Parameter: _parameter});  
-        fetch(this.state.link + "/command?jsonStr=" + postQuery, {
+        var result = await fetch("http://deathintombstone.ap-southeast-2.elasticbeanstalk.com" + "/command?jsonStr=" + postQuery, {
             method: 'GET'
-        }).then(response => {
-            return response.text(); 
-        }).then(data => {
-            return data;  
-        });
+        }); 
+        var response = await result.json();
+        console.log(response); 
+
+        return response; 
+
     }; 
 
     static getInfo(_scene) {
@@ -51,3 +52,4 @@ export class Helper {
         }
     }
 }
+

@@ -9,6 +9,7 @@ import SceneTwo from '../src/components/SceneTwo';
 import SceneThree from '../src/components/SceneThree'; 
 import SceneFour from '../src/components/SceneFour'; 
 import SceneFive from '../src/components/SceneFive'; 
+import Letty from '../src/LettySandbox'; 
 import Toolbar from './components/toolbar'; 
 
 
@@ -28,11 +29,12 @@ class Home extends React.Component {
                         <form action = "pageOne.js">
                             <input type = "submit" value="Start Game!" />
                         </form> 
+                        <Letty />
                      <SceneOne/>
                     <SceneTwo/>
                     <SceneThree/>
                     <SceneFour/>
-                    <SceneFive/>                       
+                    <SceneFive />
                     </div>
                 </div>
             </div>
