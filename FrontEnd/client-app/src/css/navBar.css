@@ -29,6 +29,8 @@ nav {
 .player_section {
     height: 30%; 
     text-align: center; 
+    background-color: #5e458e; 
+    margin-top: -10%; 
 }
 
 ul {
