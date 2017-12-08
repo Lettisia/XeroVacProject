@@ -19,17 +19,6 @@ export class Helper {
         return results; 
     }
     
-    static postData(_action, _parameter) {
-        
-        var postQuery = JSON.stringify({Action: _action, Parameter: _parameter});  
-        fetch(this.state.link + "/command?jsonStr=" + postQuery, {
-            method: 'GET'
-        }).then(response => {
-            return response.text(); 
-        }).then(data => {
-            return data;  
-        });
-    }; 
 
     static getInfo(_scene) {
         switch(_scene) {
@@ -52,3 +41,4 @@ export class Helper {
         }
     }
 }
+
