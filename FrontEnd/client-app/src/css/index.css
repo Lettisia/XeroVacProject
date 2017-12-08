@@ -1,14 +1,10 @@
-.box {
+.app {
     margin: 0px; 
 }
 
 .content {
     margin-left: 25%; 
-<<<<<<< HEAD
-=======
-
     font-weight: bold;
->>>>>>> d58abf8a674753ca3bc8909f1873463eadb1e9a6
     font-family: sans-serif;
     text-align: center;
     
@@ -21,6 +17,10 @@
 
 button {
     align: center;
+}
+
+.no-show {
+    display: none; 
 }
 
 

@@ -11,29 +11,35 @@ import SceneFour from '../src/components/SceneFour';
 import SceneFive from '../src/components/SceneFive'; 
 import Letty from '../src/LettySandbox'; 
 import Toolbar from './components/toolbar'; 
-
+import Start from './components/StartScreen'; 
 
 class Home extends React.Component {
 	    constructor(props){
         super(props);
+        this.closeStart = this.closeStart.bind(this)
+        this.state = {
+            closeStart: false
+        }
     }
+
+    closeStart() {
+        this.setState({closeStart: true}); 
+    }
+
     render() {
         return (
-            <div class = "box">
-                <div class="container">
-                    <Toolbar />
+            <div className = "app">
+                <div className={"app" + (this.state.closeStart ? " no-show":"")}>
+                    <Start closeStart={this.closeStart} />
+                </div>
+                <div className="container">                
                     <NavBar />
-                    <div class="content">
-                        <img src ={logo} class= 'logo' alt='logo' />
-                        <p>By the Xero Vacation Team</p>
-                        <form action = "pageOne.js">
-                            <input type = "submit" value="Start Game!" />
-                        </form> 
-                    <SceneOne/>
-                    <SceneTwo/>
-                    <SceneThree/>
-                    <SceneFour/>
-                    <SceneFive />
+                    <div className="content"> 
+                        <SceneTwo/>
+                        <SceneThree/>
+                        <SceneFour/>
+                        <SceneFive/>                       
+
                     </div>
                 </div>
             </div>

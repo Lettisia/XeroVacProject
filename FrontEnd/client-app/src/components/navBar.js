@@ -20,7 +20,6 @@ class NavBar extends React.Component {
 
     handleSetState(_propertyName, _data) {
         if (_propertyName === "location") {
-            console.log(_data)
             this.setState({player: _data}); 
         } else if (_propertyName === "character"){
             this.setState({character: _data}); 
@@ -29,31 +28,23 @@ class NavBar extends React.Component {
 
     async setLocation(_id) {
         var _propertyName = "location"; 
-       // var result = await Helper.getData("location", _id, "/initialiselocations");  
-     // console.log(result);
-        var _test = await  Helper.getInfo(_id);
-        console.log(_test);
-
-        this.handleSetState(_propertyName, _test); 
+        var result = await Helper.getData("location", 1, "/initialiselocations");  
+        this.handleSetState(_propertyName, result); 
     }
 
     render() {
         return (
             <nav>
-                <div class="inventory_section">
+                <div className="inventory_section">
                     <h1 id="inventory_header">Inventory</h1>
                 </div>
-                <div class="environment_section">
+                <div className="environment_section">
                     <h1 id="environment_header">Environment</h1>
                 </div>
-                <div>
-                    <button onClick={ () => { this.setLocation(1) } }>Increment</button>
-                </div>
-                <div class="player_section">
+                <div className="player_section">
                     <h1 id="player_header">William Wyatt</h1>
 
                     <p>{this.state.player.name}</p>
-
                     
                 </div>
             </nav>
