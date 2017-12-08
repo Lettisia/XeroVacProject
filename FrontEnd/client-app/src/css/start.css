@@ -9,6 +9,7 @@
     text-align: center; 
     overflow-y: scroll; 
     cursor: pointer;
+    top: 0px; 
 }
 
 .screen_container {

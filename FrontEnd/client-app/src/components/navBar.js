@@ -20,7 +20,6 @@ class NavBar extends React.Component {
 
     handleSetState(_propertyName, _data) {
         if (_propertyName === "location") {
-            console.log(_data)
             this.setState({player: _data}); 
         } else if (_propertyName === "character"){
             this.setState({character: _data}); 

@@ -18,7 +18,7 @@ export class Helper {
         })
         return results; 
     }
-
+    
     static postData(_action, _parameter) {
         
         var postQuery = JSON.stringify({Action: _action, Parameter: _parameter});  
@@ -30,4 +30,25 @@ export class Helper {
             return data;  
         });
     }; 
+
+    static getInfo(_scene) {
+        switch(_scene) {
+            case 1 || 3: //Office
+                return this.getData("location", 1, "/initialiselocations");
+            case 2: //Spooky House
+                return this.getData("location", 2, "/initialiselocations");
+            case 4: //Saloon
+                return this.getData("location", 4, "/initialiselocations");
+            
+            case 5: //Cemetery
+                return this.getData("location", 3, "/initialiselocations");
+            
+            case 6: //Main Street
+                return this.getData("location", 5, "/initialiselocations");
+            
+            default:
+                return "No scene"; 
+
+        }
+    }
 }

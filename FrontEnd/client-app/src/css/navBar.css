@@ -6,22 +6,29 @@ nav {
     position: fixed; 
     top: 0px; 
     font-family: 'PT Sans'; 
-    margin: 0; 
+    margin: 0px; 
+    box-sizing: border-box; 
 }
 
 .inventory_section {
-    height: 35%; 
-    background: #9f85c0; 
+    height: 30%;
+    background: #9f85c0;
+    margin-top: -5%;
+    padding-bottom: 20%;
+    text-align: center; 
 }
 
 .environment_section {
-    height: 35%; 
-    background: #be95c4; 
+    height: 35%;
+    background: #be95c4;
+    margin-top: -10%;
+    padding-bottom: 10%;
+    text-align: center; 
 }
 
 .player_section {
     height: 30%; 
-
+    text-align: center; 
 }
 
 ul {

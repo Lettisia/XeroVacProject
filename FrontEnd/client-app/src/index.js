@@ -28,23 +28,18 @@ class Home extends React.Component {
     render() {
         return (
             <div className = "app">
-                <div className="container">
-                    <div className={"app" + (this.state.closeStart ? " no-show":"")}>
-                        <Start closeStart={this.closeStart} />
-                    </div>                 
+                <div className={"app" + (this.state.closeStart ? " no-show":"")}>
+                    <Start closeStart={this.closeStart} />
+                </div>
+                <div className="container">                
                     <NavBar />
-                    {/* <div className="content">
-                        <img src ={logo} class= 'logo' alt='logo' />
-                        <p>By the Xero Vacation Team</p>
-                        <form action = "pageOne.js">
-                            <input type = "submit" value="Start Game!" />
-                        </form> 
+                    <div className="content"> 
                         <SceneOne/>
                         <SceneTwo/>
                         <SceneThree/>
                         <SceneFour/>
                         <SceneFive/>                       
-                    </div> */}
+                    </div>
                 </div>
             </div>
         ); 
